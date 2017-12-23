@@ -35,11 +35,11 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>Personel Adı</th>
+                            <th>Demirbaş Kodu</th>
+                            <th>Demirbaş Adı</th>
+                            <th>Demirbaş Türü</th>
+                            <th>Demirbaş Adeti</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +54,7 @@
                             foreach (localDemirbas l in ld)
                             {
                                 <tr>
+                                    <td> </td>
                                     <td>@l.demirbasKod</td>
                                     <td>@l.demirbasAdi</td>
                                     <td>@l.tur</td>
@@ -62,15 +63,6 @@
 }
                         }
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.box-body -->
