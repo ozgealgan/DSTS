@@ -62,11 +62,12 @@ namespace DSTS.BusinessLayer
 					while (rd.Read())
 					{
 						localDemirbas d = new localDemirbas();
+						d.odaAdi = rd["odaAdi"].ToString();
 						d.demirbasKod = rd["demirbasKodu"].ToString();
 						d.demirbasAdi = rd["demirbasAdi"].ToString();
 						d.demirbasMarka = rd["marka"].ToString();
 						d.demirbasModel = rd["model"].ToString();
-						d.demirbasAdet = (int)rd["demirbasAdet"];
+						d.adet = (int)rd["adet"];
 						ld.Add(d);
 					}
 				}
@@ -123,7 +124,6 @@ namespace DSTS.BusinessLayer
 						d.tur = rd["turAdi"].ToString();
 						d.adet=(int)rd["adet"];
 						ld.Add(d);
-
 					}
 				}
 				conn.Dispose();
@@ -131,64 +131,6 @@ namespace DSTS.BusinessLayer
 			}
 			return ld;
 		}
-
-		public List<localOdaDemirbas> spOdayaGoreAdet(string odaAdi)
-		{
-			List<localOdaDemirbas> lod = new List<localOdaDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spOdayaGoreAdet", conn);
-				cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
-
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localOdaDemirbas od = new localOdaDemirbas();
-						od.adet = (int)rd["adet"];
-						lod.Add(od);
-
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return lod;
-		}
-
-		public List<localTur> spOdayaGoreTur(string odaAdi)
-		{
-			List<localTur> lt = new List<localTur>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spOdayaGoreTur", conn);
-				cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
-
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localTur t = new localTur();
-						t.turAdi = rd["turAdi"].ToString();
-						lt.Add(t);
-
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return lt;
-		}
-
-
 	}
 
 }
