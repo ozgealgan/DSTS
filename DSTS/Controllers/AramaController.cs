@@ -22,6 +22,7 @@ namespace DSTS.Controllers
 			ViewBag.demirbaslar=bl.PersoneleGoreAra(personelAdi);
 			return View();
 		}
+
 		public ActionResult OdaAdinaGoreAra()
 		{
 			return View();
@@ -29,6 +30,21 @@ namespace DSTS.Controllers
 
 		[HttpPost]
 		public ActionResult OdaAdinaGoreAra(string odaAdi)
+		{
+			ViewBag.odaPersonel = bl.spOdayaGorePersonel(odaAdi);
+			ViewBag.odaDemirbas = bl.spOdayaGoreDemirbas(odaAdi);
+		//	ViewBag.odaAdet = bl.spOdayaGoreAdet(odaAdi);
+		//	ViewBag.odaTur = bl.spOdayaGoreTur(odaAdi);
+			return View();
+		}
+
+		public ActionResult DemirbasSayisiniArama()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult DemirbasSayisiniArama(string demirbas)
 		{
 			return View();
 		}

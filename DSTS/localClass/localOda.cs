@@ -11,5 +11,9 @@ namespace DSTS.localClass
 		public string odaAdi { get; set; }
 		public int personelId { get; set; }
 		public int fakulteId { get; set; }
+
+		public virtual localFakulte localFakulte { get; set; }
+		public virtual localpersonel localpersonel { get; set; }
+		public virtual ICollection<localOdaDemirbas> localOdaDemirbas { get; set; }
 	}
 }

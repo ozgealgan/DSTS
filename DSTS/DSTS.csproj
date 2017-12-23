@@ -7551,6 +7551,7 @@
     <Content Include="Views\Kayit\OdaEkle.cshtml" />
     <Content Include="Views\Arama\PersoneleGoreAra.cshtml" />
     <Content Include="Views\Arama\OdaAdinaGoreAra.cshtml" />
+    <Content Include="Views\Arama\DemirbasSayisiniArama.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

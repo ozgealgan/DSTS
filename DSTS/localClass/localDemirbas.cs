@@ -7,7 +7,7 @@ namespace DSTS.localClass
 {
     public class localDemirbas
     {
-        public int fakulteAdi { get; set; }
+        public int fakulteId { get; set; }
         public string demirbasAdi { get; set; }
         public int demirbasAdet { get; set; }
         public decimal demirbasFiyat { get; set; }
@@ -16,6 +16,8 @@ namespace DSTS.localClass
         public string demirbasMarka { get; set; }
         public string demirbasModel { get; set; }
         public string demirbasKod { get; set; }
+		public int adet { get; set; }
+		public string tur { get; set; }
 
-    }
+	}
 }
