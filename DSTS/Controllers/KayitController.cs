@@ -17,16 +17,17 @@ namespace DSTS.Controllers
         }
 
         [HttpPost]
-        public ActionResult StokEkle(string fakulteId, string dbAdi, string DbAdet, string dbFiyat, string dbtur)
+        public ActionResult StokEkle(string fakulteId, string dbAdi, string DbAdet, string dbFiyat, string dbtur, string dbMarka, string dbModel)
         {
            
-            bl.StokEkle(dbAdi, Convert.ToInt32(DbAdet), Convert.ToDecimal(dbFiyat), 2);
+            bl.StokEkle(Convert.ToInt32(fakulteId), dbAdi, Convert.ToInt32(DbAdet), Convert.ToDecimal(dbFiyat), Convert.ToInt32(dbtur), dbMarka, dbModel);
             return View();
         }
 
         public ActionResult OdaEkle()
         {
-            return View();
+
+            return View(bl);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace DSTS.BusinessLayer
     {
         string conStrig = WebConfigurationManager.ConnectionStrings["."].ConnectionString;
 
-        public void StokEkle(string dbAdi, int DbAdet, decimal dbFiyat, int dbtur)
+        public void StokEkle(int fakulteId, string dbAdi, int DbAdet, decimal dbFiyat, int dbtur, string dbMarka, string dbModel)
         {           
             using (SqlConnection conn = new SqlConnection(conStrig))
             {
@@ -28,22 +28,24 @@ namespace DSTS.BusinessLayer
                 cmdd.Parameters.Add(new SqlParameter("@demirbasFiyat", dbFiyat));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasTur", dbtur));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasTarih", DateTime.Now));
-                cmdd.Parameters.Add(new SqlParameter("@demirbasMarka", "örnekmarka"));
-                cmdd.Parameters.Add(new SqlParameter("@demirbasModel", "örnekmodel"));
-
+                cmdd.Parameters.Add(new SqlParameter("@demirbasMarka", dbMarka));
+                cmdd.Parameters.Add(new SqlParameter("@demirbasModel", dbModel));
+                cmdd.Parameters.Add(new SqlParameter("@demirbasFakulteId", fakulteId));             
                 cmdd.Parameters.Add(new SqlParameter("@demirbasKod", "01.02.01.01"));
 
-                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+                //SqlDataAdapter da = new SqlDataAdapter(cmdd);
 
                 cmdd.CommandTimeout = 600;
                 cmdd.ExecuteNonQuery();
-               // object o = cmdd.ExecuteScalar();
                 conn.Dispose();
                 
                 conn.Close();
             }
          
         }
+
+        
+        
 
     }
 }
