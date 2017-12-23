@@ -168,6 +168,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="localClass\localDemirbas.cs" />
+    <Compile Include="localClass\localDepartman.cs" />
+    <Compile Include="localClass\localFakulte.cs" />
+    <Compile Include="localClass\localOda.cs" />
+    <Compile Include="localClass\localOdaDemirbas.cs" />
+    <Compile Include="localClass\localpersonel.cs" />
+    <Compile Include="localClass\localTur.cs" />
+    <Compile Include="localClass\localYetki.cs" />
     <Compile Include="Models\DemirbasTakip.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -7541,6 +7548,7 @@
     <Content Include="Views\Kayit\StokEkle.cshtml" />
     <Content Include="Views\Kayit\OdaEkle.cshtml" />
     <Content Include="Views\Arama\PersoneleGoreAra.cshtml" />
+    <Content Include="Views\Arama\OdaAdinaGoreAra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

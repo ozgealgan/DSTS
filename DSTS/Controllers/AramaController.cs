@@ -22,5 +22,15 @@ namespace DSTS.Controllers
 			ViewBag.demirbaslar=bl.PersoneleGoreAra(personelAdi);
 			return View();
 		}
+		public ActionResult OdaAdinaGoreAra()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult OdaAdinaGoreAra(string odaAdi)
+		{
+			return View();
+		}
 	}
 }
