@@ -1,7 +1,9 @@
-﻿
+﻿@using DSTS.localClass
 @{
     ViewBag.Title = "OdaEkle";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<localpersonel> lp = ViewBag.personeller;
+    List<localFakulte> lf = ViewBag.fakulteler;
 }
 
 <section class="content-header">
@@ -26,13 +28,13 @@
             <h3 class="box-title">Oda Ekleme</h3>
         </div>
 
-        <form class="form-horizontal">
+        <form method="post" action="~/Kayit/OdaEkle" class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputOdaAd" class="col-sm-2 control-label">Oda Adı</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputOdaAd" placeholder="Oda Adı">
+                        <input name="odaAdi" type="text" class="form-control" id="inputOdaAd" placeholder="Oda Adı">
                     </div>
                 </div>
 
@@ -40,14 +42,11 @@
                     <label for="inputOdaSorumlu" class="col-sm-2 control-label">Oda Sorumlusu</label>
 
                     <div class="col-sm-10">
-                        <select id="inputOdaSorumlu" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                        <select name="sorumluAdi" id="inputOdaSorumlu" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                           @foreach (localpersonel l in lp)
+                           {
+                            <option>@l.personelAdi</option>
+                           }                                                       
                         </select>
                     </div>
                 </div>
@@ -56,32 +55,15 @@
                     <label for="inputFakulte" class="col-sm-2 control-label">Eklenecek fakülte </label>
 
                     <div class="col-sm-10">
-                        <select id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                        <select name="fakulteAdi" id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            @foreach (localFakulte l in lf)
+                            {
+                                <option>@l.fakulteAdi</option>
+                            }
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputOda" class="col-sm-2 control-label">Eklenecek oda </label>
-
-                    <div class="col-sm-10">
-                        <select id="inputOda" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div>
-                </div>
+                
 
 
 
