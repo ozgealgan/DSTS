@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     localpersonel lp = ViewBag.odaPersonel;
     List<localDemirbas> ld = ViewBag.odaDemirbas;
-    List<localOdaDemirbas> lod = ViewBag.odaAdet;
-    List<localTur> lt = ViewBag.odaTur;
 }
 
 <!-- Main content -->
@@ -50,22 +48,18 @@
                                 <tr>
                                     <td>@lp.personelAdi</td>
                                 </tr>
-                        }               
-
-                        @if (ld != null && lod != null)
+                        } 
+                        @if (ld != null)
                         {
-                            foreach (localDemirbas l1 in ld)
+                            foreach (localDemirbas l in ld)
                             {
-                                <td>@l1.demirbasKod</td>
-                                <td>@l1.demirbasAdi</td>
-                                foreach (localOdaDemirbas l2 in lod)
-                                {
-                                    <tr>
-                                        
-                                        <td>@l2.adet</td>
-                                    </tr>
-                                }      
-                            }
+                                <tr>
+                                    <td>@l.demirbasKod</td>
+                                    <td>@l.demirbasAdi</td>
+                                    <td>@l.tur</td>
+                                    <td>@l.adet</td>
+                                </tr>
+}
                         }
                     </tbody>
                     <tfoot>

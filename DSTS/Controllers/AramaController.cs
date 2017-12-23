@@ -33,8 +33,8 @@ namespace DSTS.Controllers
 		{
 			ViewBag.odaPersonel = bl.spOdayaGorePersonel(odaAdi);
 			ViewBag.odaDemirbas = bl.spOdayaGoreDemirbas(odaAdi);
-			ViewBag.odaAdet = bl.spOdayaGoreAdet(odaAdi);
-			ViewBag.odaTur = bl.spOdayaGoreTur(odaAdi);
+		//	ViewBag.odaAdet = bl.spOdayaGoreAdet(odaAdi);
+		//	ViewBag.odaTur = bl.spOdayaGoreTur(odaAdi);
 			return View();
 		}
 

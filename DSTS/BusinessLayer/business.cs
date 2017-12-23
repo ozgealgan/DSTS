@@ -120,6 +120,8 @@ namespace DSTS.BusinessLayer
 						localDemirbas d = new localDemirbas();
 						d.demirbasKod= rd["demirbasKodu"].ToString();
 						d.demirbasAdi = rd["demirbasAdi"].ToString();
+						d.tur = rd["turAdi"].ToString();
+						d.adet=(int)rd["adet"];
 						ld.Add(d);
 
 					}
