@@ -16,7 +16,7 @@ namespace DSTS
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "Kayit", action = "StokEkle", id = UrlParameter.Optional }
+				defaults: new { controller = "Arama", action = "PersoneleGoreAra", id = UrlParameter.Optional }
 			);
 		}
 	}

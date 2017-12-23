@@ -161,56 +161,54 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLayer\business.cs" />
+    <Compile Include="Controllers\AramaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KayitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="localClass\localDemirbas.cs" />
-    <Compile Include="Models\demirbasDB.Context.cs">
+    <Compile Include="Models\DemirbasTakip.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>demirbasDB.Context.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\demirbasDB.cs">
+    <Compile Include="Models\DemirbasTakip.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\demirbasDB.Designer.cs">
+    <Compile Include="Models\DemirbasTakip.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>demirbasDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\tblDemirba.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblDepartman.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblFakulte.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblLog.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblOda.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblOdaDemirba.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblPersonel.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblTur.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblYetki.cs">
-      <DependentUpon>demirbasDB.tt</DependentUpon>
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -6840,15 +6838,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\demirbasDB.Context.tt">
+    <Content Include="Models\DemirbasTakip.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>demirbasDB.edmx</DependentUpon>
-      <LastGenOutput>demirbasDB.Context.cs</LastGenOutput>
+      <DependentUpon>DemirbasTakip.edmx</DependentUpon>
+      <LastGenOutput>DemirbasTakip.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\demirbasDB.tt">
+    <Content Include="Models\DemirbasTakip.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>demirbasDB.edmx</DependentUpon>
-      <LastGenOutput>demirbasDB.cs</LastGenOutput>
+      <DependentUpon>DemirbasTakip.edmx</DependentUpon>
+      <LastGenOutput>DemirbasTakip.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -7508,12 +7506,12 @@
     <Content Include="Content\Login\vendor\font-awesome\scss\_screen-reader.scss" />
     <Content Include="Content\Login\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\Login\vendor\font-awesome\scss\_variables.scss" />
-    <EntityDeploy Include="Models\demirbasDB.edmx">
+    <EntityDeploy Include="Models\DemirbasTakip.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>demirbasDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>DemirbasTakip.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\demirbasDB.edmx.diagram">
-      <DependentUpon>demirbasDB.edmx</DependentUpon>
+    <Content Include="Models\DemirbasTakip.edmx.diagram">
+      <DependentUpon>DemirbasTakip.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -7542,6 +7540,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Kayit\StokEkle.cshtml" />
     <Content Include="Views\Kayit\OdaEkle.cshtml" />
+    <Content Include="Views\Arama\PersoneleGoreAra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7576,7 +7575,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61452</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
