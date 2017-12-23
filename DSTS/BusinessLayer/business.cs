@@ -11,9 +11,9 @@ namespace DSTS.BusinessLayer
 {
     public class business
     {
-        string conStrig = WebConfigurationManager.ConnectionStrings["."].ConnectionString;
+        string conStrig = WebConfigurationManager.ConnectionStrings["Local_DatabaseConnection"].ConnectionString;
 
-        public void StokEkle(int fakulteId, string dbAdi, int DbAdet, decimal dbFiyat, int dbtur, string dbMarka, string dbModel)
+        public void StokEkle(string dbAdi, int DbAdet, decimal dbFiyat, int dbtur)
         {           
             using (SqlConnection conn = new SqlConnection(conStrig))
             {
@@ -28,15 +28,16 @@ namespace DSTS.BusinessLayer
                 cmdd.Parameters.Add(new SqlParameter("@demirbasFiyat", dbFiyat));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasTur", dbtur));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasTarih", DateTime.Now));
-                cmdd.Parameters.Add(new SqlParameter("@demirbasMarka", dbMarka));
-                cmdd.Parameters.Add(new SqlParameter("@demirbasModel", dbModel));
-                cmdd.Parameters.Add(new SqlParameter("@demirbasFakulteId", fakulteId));             
+                cmdd.Parameters.Add(new SqlParameter("@demirbasMarka", "örnekmarka"));
+                cmdd.Parameters.Add(new SqlParameter("@demirbasModel", "örnekmodel"));
+
                 cmdd.Parameters.Add(new SqlParameter("@demirbasKod", "01.02.01.01"));
 
-                //SqlDataAdapter da = new SqlDataAdapter(cmdd);
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
 
                 cmdd.CommandTimeout = 600;
                 cmdd.ExecuteNonQuery();
+               // object o = cmdd.ExecuteScalar();
                 conn.Dispose();
                 
                 conn.Close();
@@ -44,8 +45,37 @@ namespace DSTS.BusinessLayer
          
         }
 
-        
-        
+		public List<localDemirbas> PersoneleGoreAra(string personelAdi)
+		{
+			List<localDemirbas> ld = new List<localDemirbas>();
+			using (SqlConnection conn = new SqlConnection(conStrig))
+			{
+				conn.Open();
+				SqlCommand cmdd = new SqlCommand("spPersoneleGoreAra", conn);
+				cmdd.Parameters.Add(new SqlParameter("@personelAdi", personelAdi));
 
-    }
+				cmdd.CommandTimeout = 600;
+				cmdd.CommandType = CommandType.StoredProcedure;
+				SqlDataReader rd = cmdd.ExecuteReader();
+				if (rd.HasRows == true)
+				{
+					while (rd.Read())
+					{
+						localDemirbas d = new localDemirbas();
+						d.demirbasKod = rd["demirbasKodu"].ToString();
+						d.demirbasAdi = rd["demirbasAdi"].ToString();
+						d.demirbasMarka = rd["marka"].ToString();
+						d.demirbasModel = rd["model"].ToString();
+						d.demirbasAdet = (int)rd["demirbasAdet"];
+						ld.Add(d);
+					}
+				}
+				conn.Dispose();
+				conn.Close();
+			}
+			return ld;
+		}
+
+	}
+
 }

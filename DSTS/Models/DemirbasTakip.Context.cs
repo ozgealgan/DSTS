@@ -25,7 +25,6 @@ namespace DSTS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblDemirba> tblDemirbas { get; set; }
         public virtual DbSet<tblDepartman> tblDepartmen { get; set; }
         public virtual DbSet<tblFakulte> tblFakultes { get; set; }

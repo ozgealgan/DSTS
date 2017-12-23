@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="~/Content/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -412,5 +413,8 @@
     $('.sidebar-menu').tree()
   })
     </script>
+
+    @RenderSection("aramaScript", false)
+    
 </body>
 </html>
