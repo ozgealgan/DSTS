@@ -17,7 +17,6 @@ namespace DSTS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblFakulte()
         {
-            this.tblDemirbas = new HashSet<tblDemirba>();
             this.tblDepartmen = new HashSet<tblDepartman>();
             this.tblOdas = new HashSet<tblOda>();
         }
@@ -25,8 +24,6 @@ namespace DSTS.Models
         public int fakulteId { get; set; }
         public string fakulteAdi { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblDemirba> tblDemirbas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDepartman> tblDepartmen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

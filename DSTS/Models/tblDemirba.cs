@@ -14,7 +14,13 @@ namespace DSTS.Models
     
     public partial class tblDemirba
     {
-        public int demirbasBilgiId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblDemirba()
+        {
+            this.tblOdaDemirbas = new HashSet<tblOdaDemirba>();
+        }
+    
+        public int demirbasId { get; set; }
         public string demirbasAdi { get; set; }
         public int demirbasAdet { get; set; }
         public int demirbasTurId { get; set; }
@@ -25,7 +31,7 @@ namespace DSTS.Models
         public int fakulteId { get; set; }
         public string demirbasKodu { get; set; }
     
-        public virtual tblFakulte tblFakulte { get; set; }
-        public virtual tblTur tblTur { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOdaDemirba> tblOdaDemirbas { get; set; }
     }
 }

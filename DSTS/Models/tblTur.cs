@@ -14,16 +14,7 @@ namespace DSTS.Models
     
     public partial class tblTur
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblTur()
-        {
-            this.tblDemirbas = new HashSet<tblDemirba>();
-        }
-    
         public int demirbasTurId { get; set; }
         public string turAdi { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblDemirba> tblDemirbas { get; set; }
     }
 }

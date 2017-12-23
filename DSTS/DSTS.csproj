@@ -160,10 +160,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusinessLayer\business.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KayitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="localClass\localDemirbas.cs" />
     <Compile Include="Models\demirbasDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -178,6 +181,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>demirbasDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>demirbasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblDemirba.cs">
       <DependentUpon>demirbasDB.tt</DependentUpon>
@@ -7534,6 +7540,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Kayit\StokEkle.cshtml" />
+    <Content Include="Views\Kayit\OdaEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
