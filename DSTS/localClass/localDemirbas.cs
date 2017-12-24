@@ -18,6 +18,7 @@ namespace DSTS.localClass
         public string demirbasKod { get; set; }
 		public int adet { get; set; }
 		public string tur { get; set; }
+		public string odaAdi { get; set; }
 
 	}
 }

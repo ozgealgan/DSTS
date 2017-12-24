@@ -33,8 +33,6 @@ namespace DSTS.Controllers
 		{
 			ViewBag.odaPersonel = bl.spOdayaGorePersonel(odaAdi);
 			ViewBag.odaDemirbas = bl.spOdayaGoreDemirbas(odaAdi);
-		//	ViewBag.odaAdet = bl.spOdayaGoreAdet(odaAdi);
-		//	ViewBag.odaTur = bl.spOdayaGoreTur(odaAdi);
 			return View();
 		}
 
@@ -44,8 +42,25 @@ namespace DSTS.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult DemirbasSayisiniArama(string demirbas)
+		public ActionResult DemirbasSayisiniArama(string aranacak, string aranacakDeger)
 		{
+			if(aranacak== "Demirbaş Adına Göre Ara")
+			{
+				ViewBag.Ad = bl.spDemirbasAdinaGoreAra(aranacakDeger);
+			}
+			else if(aranacak== "Demirbaş Türüne Göre Ara")
+			{
+				ViewBag.tur = bl.spTuruneGoreAra(aranacakDeger);
+			}
+			else if(aranacak== "Demirbaş Fiyatına Göre Ara")
+			{
+				ViewBag.fiyat = bl.spFiyatınaGoreAra(aranacakDeger);
+			}
+			else if(aranacak== "Demirbaş Alım Tarihine Göre Ara")
+			{
+				ViewBag.tarih = bl.spTariheGoreAra(aranacakDeger);
+			}
+		
 			return View();
 		}
 	}

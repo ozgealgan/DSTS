@@ -27,18 +27,19 @@
                             </div>
                                
                         </form>
-                           </div>
+                     </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>Oda Adı</th>
+                                <th>Demirbaş Kodu</th>
+                                <th>Demirbaş Adı</th>
+                                <th>Demirbaş Markası</th>
+                                <th>Demirbaş Modeli</th>
+                                <th>Odadaki Demirbaş Sayısı</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,22 +48,16 @@
                                 foreach (localDemirbas l in ld)
                                 {
                                     <tr>
+                                        <td>@l.odaAdi</td>
                                         <td>@l.demirbasKod</td>
                                         <td>@l.demirbasAdi</td>
                                         <td>@l.demirbasMarka</td>
                                         <td>@l.demirbasModel</td>
-                                        <td> @l.demirbasAdet</td>
+                                        <td>@l.adet</td>
                                     </tr>}
                             }
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                            </tr>
                         </tfoot>
                     </table>
                 </div>
