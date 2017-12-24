@@ -13,21 +13,31 @@ namespace DSTS.Controllers
         // GET: Kayit
         public ActionResult StokEkle()
         {
+            ViewBag.turler = bl.turAdi();
+            ViewBag.fakulteler = bl.FakulteAdi();
             return View();
         }
 
-      /*  [HttpPost]
-        public ActionResult StokEkle(string fakulteId, string dbAdi, string DbAdet, string dbFiyat, string dbtur, string dbMarka, string dbModel)
+        [HttpPost]
+        public ActionResult StokEkle(string fakulteAdi, string dbAdi, string DbAdet, string dbFiyat, string dbtur, string dbMarka, string dbModel)
         {
            
-            bl.StokEkle(Convert.ToInt32(fakulteId), dbAdi, Convert.ToInt32(DbAdet), Convert.ToDecimal(dbFiyat), Convert.ToInt32(dbtur), dbMarka, dbModel);
-            return View();
-        }*/
+            bl.StokEkle(fakulteAdi, dbAdi, Convert.ToInt32(DbAdet), Convert.ToDecimal(dbFiyat), dbtur, dbMarka, dbModel);
+            return View(StokEkle());
+        }
 
         public ActionResult OdaEkle()
         {
+            ViewBag.fakulteler = bl.FakulteAdi();
+            ViewBag.personeller = bl.PersonelAdi();   
+            return View(bl.FakulteAdi());
+        }
 
-            return View(bl);
+        [HttpPost]
+        public ActionResult OdaEkle(string odaAdi, string sorumluAdi, string fakulteAdi)
+        {
+            bl.OdaEkle(odaAdi, sorumluAdi, fakulteAdi);
+            return View(OdaEkle());
         }
     }
 }
