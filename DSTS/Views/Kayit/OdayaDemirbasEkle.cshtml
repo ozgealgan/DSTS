@@ -1,13 +1,11 @@
-﻿@using DSTS.localClass
+﻿
 @{
     ViewBag.Title = "OdayaDemirbasEkle";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    List<localOda> lo = ViewBag.odalar;
-    List<localFakulte> lf = ViewBag.fakulteler;
-    List<localDemirbas> lda = ViewBag.demirbaslar;
-
 }
+
+
+
 
 <section class="content-header">
     <h1>
@@ -20,9 +18,6 @@
     </ol>
 </section>
 
-
-
-
 <section class="content">
 
     <div class="box box-info">
@@ -30,31 +25,21 @@
             <h3 class="box-title">Odaya Demirbaş Ekleme</h3>
         </div>
 
-        <form method="post" action="~/Kayit/OdayaDemirbasEkle" class="form-horizontal">
+        <form @*method="post" action="~/Kayit/OdayaDbEkle*@" class="form-horizontal">
             <div class="box-body">
 
                 <div class="form-group">
                     <label for="inputFakulte" class="col-sm-2 control-label">Fakülte </label>
 
                     <div class="col-sm-10">
-                        <select id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            @foreach (localFakulte l in lf)
-                            {
-                                <option>@l.fakulteAdi</option>
-                            }
-                        </select>
+                        <select id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputOda" class="col-sm-2 control-label">Oda </label>
 
                     <div class="col-sm-10">
-                        <select name="odaAdi" id="inputOda" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            @foreach (localOda l in lo)
-                            {
-                                <option>@l.odaAdi</option>
-                            }
-                        </select>
+                        <select name="odaAdi" id="inputOda" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true"></select>
                     </div>
                 </div>
 
@@ -62,12 +47,7 @@
                     <label for="inputDB" class="col-sm-2 control-label">Demirbaş </label>
 
                     <div class="col-sm-10">
-                        <select name="Demirbas" id="inputDB" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            @foreach (localDemirbas l in lda)
-                            {
-                                <option>@l.demirbasKod-@l.demirbasAdi-@l.demirbasMarka-@l.demirbasModel</option>
-                            }
-                        </select>
+                        <select name="Demirbas" id="inputDB" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true"></select>
                     </div>
                 </div>
 
@@ -83,12 +63,87 @@
             <!-- /.box-body -->
             <div class="box-footer">
 
-                <button type="submit" class="btn btn-info pull-right">Odaya Demirbaşı Ekle</button>
-                <button type="submit" class="btn btn-default">Geri Dön</button>
+                <button id="ekleArtık" type="submit" class="btn btn-info pull-right">Odaya Demirbaşı Ekle</button>
+                <button id="geriDon" type="submit" class="btn btn-default">Geri Dön</button>
             </div>
             <!-- /.box-footer -->
         </form>
     </div>
 
 </section>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Get a list of categories and a list of products of the first category.
+            $.getJSON('/Kayit/GetFakulte', null, function (data) {
+                $.each(data, function () {
+
+                    $('#inputFakulte').append('<option value=' +
+                    this.fakulteId + '>' + this.fakulteAdi + '</option>');
+                });
+                $.getJSON('/Kayit/GetOda', { intFakId: $('#inputFakulte').val() }, function (data) {
+                    $.each(data, function () {
+                        $('#inputOda').append('<option value="' +
+                          this.odaId + '">' + this.odaAdi + '</option>');
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Odaları getirirken bir soun oluştu!');
+                });
+
+                $.getJSON('/Kayit/GetDemirbas', { intFakId: $('#inputFakulte').val() }, function (data) {
+                    $.each(data, function () {
+                        $('#inputDB').append('<option value=' +
+                          this.demirbasId + '>' +this.demirbasKod+'-'+this.demirbasAdi+'-'+this.demirbasMarka+'-'+this.demirbasModel+ '</option>');
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Demirbaşları getirirken bir sorun oluştu!');
+                });
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Fakülteleri getirirken bir sorun oluştu!');
+            });
+
+            // Dropdown list change event.
+            $('#inputFakulte').change(function () {
+                $('#inputOda option').remove();
+                $.getJSON('/Kayit/GetOda', { intFakId: $('#inputFakulte').val() }, function (data) {
+                    $.each(data, function () {
+                        $('#inputOda').append('<option value="' +
+                          this.odaId + '">' + this.odaAdi + '</option>');
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Odaları getirirken bir sorun oluştu!');
+                });
+                $('#inputDB option').remove();
+                $.getJSON('/Kayit/GetDemirbas', { intFakId: $('#inputFakulte').val() }, function (data) {
+                    $.each(data, function () {
+                        $('#inputDB').append('<option value=' +
+                          this.demirbasId + '>' + this.demirbasKod + '-' + this.demirbasAdi + '-' + this.demirbasMarka + '-' + this.demirbasModel + '</option>');
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Demirbaşları getirirken bir sorun oluştu!');
+                });
+            });
+
+            $("#ekleArtık").click(function () {
+                var oda = $("#inputOda option:selected").text();
+                var demirbas = $("#inputDB option:selected").text();
+                var adet = $("#inputDBAdet").val();
+                $.ajax({
+                    url: '/Kayit/OdayaDbEkle',
+                    data: { odaAdi: oda, Demirbas: demirbas, dbAdet: adet },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("Başarılı ");
+                    }
+                });
+            });
+        });
+
+    </script>
+  
+}
+
 

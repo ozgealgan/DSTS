@@ -91,6 +91,7 @@ namespace DSTS.BusinessLayer
                     {
                         localFakulte d = new localFakulte();
                         d.fakulteAdi = rd["fakulteAdi"].ToString();
+                        d.fakulteId = Convert.ToInt32(rd["fakulteId"]);
                         
                         ld.Add(d);
                     }
@@ -389,6 +390,7 @@ namespace DSTS.BusinessLayer
                     while (rd.Read())
                     {
                         localOda d = new localOda();
+                        d.fakulteId = Convert.ToInt32(rd["fakulteId"]);
                         d.odaAdi = rd["odaAdi"].ToString();
 
                         lo.Add(d);
@@ -417,6 +419,7 @@ namespace DSTS.BusinessLayer
                     while (rd.Read())
                     {
                         localDemirbas d = new localDemirbas();
+                        d.fakulteId = Convert.ToInt32(rd["fakulteId"]);
                         d.demirbasKod = rd["demirbasKodu"].ToString();
                         d.demirbasAdi = rd["demirbasAdi"].ToString();
                         d.demirbasMarka = rd["Marka"].ToString();

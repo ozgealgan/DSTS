@@ -153,9 +153,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/Guncelleme/OdadakiDemirbasiGuncelle"><i class="fa fa-dot-circle-o"></i>Odadaki Demirbaşı Güncelle</a></li>
-                            <li><a href="/Guncelleme/OdayaDemirbasEkle"><i class="fa fa-dot-circle-o"></i>Odadaki Demirbaşı Güncelle</a></li>
-
+                            <li><a href="/Guncelleme/OdadakiDemirbasiGuncelle"><i class="fa fa-dot-circle-o"></i>Odadaki Demirbaşı Güncelle</a></li>                           
                             <li><a href="/Guncelleme/OdaBilgileriniGuncelleme"><i class="fa fa-dot-circle-o"></i>Oda Bilgilerini Güncelleme</a></li>
                         </ul>
                     </li>
@@ -191,7 +189,7 @@
                 <!-- Default box -->
                 @RenderBody()
                 <!-- /.box -->
-
+                
             </section>
             <!-- /.content -->
         </div>
@@ -407,8 +405,11 @@
     <script src="~/Content/bower_components/fastclick/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <script src="~/Content/bower_components/jquery/src/ajax/jsonp.js"></script>
+    <script src="~/Content/bower_components/jquery/src/ajax/script.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/Content/dist/js/demo.js"></script>
+    <script src="~/Content/bower_components/jquery/src/ajax.js"></script>
     <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
@@ -416,6 +417,6 @@
     </script>
 
     @RenderSection("aramaScript", false)
-    
+    @RenderSection("scripts", false)
 </body>
 </html>

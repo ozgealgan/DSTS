@@ -9,7 +9,7 @@ namespace DSTS.Controllers
 {
     public class GuncellemeController : Controller
     {
-        
+        business bl = new business();
 
         public ActionResult OdadakiDemirbasiGuncelle()
         {
@@ -17,6 +17,7 @@ namespace DSTS.Controllers
         }
         public ActionResult OdaBilgileriniGuncelleme()
         {
+            ViewBag.fakulteler = bl.FakulteAdi();
             return View();
         }
     }
