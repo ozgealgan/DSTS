@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "OdadakiDemirbasiGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Odadaki Demirbaşı Güncelleme
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-home"></i> Anasayfa </a></li>
+        <li><a href="#">Güncelleme İşlemleri</a></li>
+        <li class="active">Odadaki Demirbaşı Güncelleme</li>
+    </ol>
+</section>
+
+
+
+
+<section class="content">
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Odadaki Demirbaşı Güncelleme</h3>
+        </div>
+
+        <form class="form-horizontal">
+            <div class="box-body">
+
+                <div class="form-group">
+                    <label for="inputFakulte" class="col-sm-2 control-label">Fakülte </label>
+
+                    <div class="col-sm-10">
+                        <select id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            <option selected="selected">Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputOda" class="col-sm-2 control-label">Oda </label>
+
+                    <div class="col-sm-10">
+                        <select id="inputOda" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            <option selected="selected">Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputDB" class="col-sm-2 control-label">Demirbaş </label>
+
+                    <div class="col-sm-10">
+                        <select id="inputDB" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            <option selected="selected">Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputDBAdet" class="col-sm-2 control-label">Demirbaş Adedi</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputDBAdet" placeholder="Demirbaş Adedi">
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+                <button type="submit" class="btn btn-info pull-right">Demirbaş Adedini Güncelle</button></br></br>
+                <button type="submit" class="btn btn-info pull-right">Demirbaşı Sil</button>
+                <button type="submit" class="btn btn-default">Geri Dön</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+
+</section>
+

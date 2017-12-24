@@ -39,5 +39,20 @@ namespace DSTS.Controllers
             bl.OdaEkle(odaAdi, sorumluAdi, fakulteAdi);
             return View(OdaEkle());
         }
+
+        public ActionResult OdayaDemirbasEkle()
+        {
+            ViewBag.fakulteler = bl.FakulteAdi();
+            ViewBag.odalar = bl.OdaAdiGetir();
+            ViewBag.demirbaslar = bl.DemirbasAdlariniGetir();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult OdayaDemirbasEkle(string odaAdi, string Demirbas, string dbAdet)
+        {                                
+            bl.OdayaDemirbasEkle(odaAdi, Demirbas.Substring(0, 12), Convert.ToInt32(dbAdet));
+            return View(OdayaDemirbasEkle());
+        }
     }
 }

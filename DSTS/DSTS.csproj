@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLayer\business.cs" />
     <Compile Include="Controllers\AramaController.cs" />
+    <Compile Include="Controllers\GuncellemeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KayitController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +190,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DemirbasTakip.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DemirbasTakip.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblDemirba.cs">
       <DependentUpon>DemirbasTakip.tt</DependentUpon>
@@ -7552,6 +7556,9 @@
     <Content Include="Views\Arama\PersoneleGoreAra.cshtml" />
     <Content Include="Views\Arama\OdaAdinaGoreAra.cshtml" />
     <Content Include="Views\Arama\DemirbasSayisiniArama.cshtml" />
+    <Content Include="Views\Guncelleme\OdadakiDemirbasiGuncelle.cshtml" />
+    <Content Include="Views\Guncelleme\OdaBilgileriniGuncelleme.cshtml" />
+    <Content Include="Views\Kayit\OdayaDemirbasEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
