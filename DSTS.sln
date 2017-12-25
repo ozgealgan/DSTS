@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSTS", "DSTS\DSTS.csproj", "{A01F7E5B-8C3A-4C93-8BD8-E3B77BECDC89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSTSUnitTest", "DSTSUnitTest\DSTSUnitTest.csproj", "{02A163CB-847E-4FE3-AE4A-E84F1BADB414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A01F7E5B-8C3A-4C93-8BD8-E3B77BECDC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A01F7E5B-8C3A-4C93-8BD8-E3B77BECDC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A01F7E5B-8C3A-4C93-8BD8-E3B77BECDC89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A163CB-847E-4FE3-AE4A-E84F1BADB414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A163CB-847E-4FE3-AE4A-E84F1BADB414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A163CB-847E-4FE3-AE4A-E84F1BADB414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A163CB-847E-4FE3-AE4A-E84F1BADB414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
