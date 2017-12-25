@@ -482,6 +482,61 @@ namespace DSTS.BusinessLayer
 
         }
 
+        public void OdadakiDBGuncelle(string odaId, string dbId, string adet)
+        {
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+
+                SqlCommand cmdd = new SqlCommand("spOdadakiDBGuncelle", conn);
+                cmdd.CommandType = CommandType.StoredProcedure;
+
+                cmdd.Parameters.Add(new SqlParameter("@odaId", Convert.ToInt32(odaId)));
+                cmdd.Parameters.Add(new SqlParameter("@dbId", Convert.ToInt32(dbId)));
+                cmdd.Parameters.Add(new SqlParameter("@dbAdet", Convert.ToInt32(adet)));
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+                cmdd.CommandTimeout = 600;
+                cmdd.ExecuteNonQuery();
+                conn.Dispose();
+                conn.Close();
+            }
+
+        }
+
+        public List<localDemirbas> OdadakiDbGetir(int odaId)
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spOdadakiDBGetir", conn);
+                cmdd.Parameters.Add(new SqlParameter("@odaId",odaId));
+
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.demirbasKod = rd["demirbasKodu"].ToString();
+                        d.demirbasAdi = rd["demirbasAdi"].ToString();
+                        d.demirbasMarka = rd["Marka"].ToString();
+                        d.demirbasModel = rd["model"].ToString();                        
+                        d.demirbasId = Convert.ToInt32(rd["demirbasId"]);
+
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
+
     }
 
 }
