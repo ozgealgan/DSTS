@@ -96,14 +96,12 @@
         });
 
 
-        $('#inputDemirbas').change(function () {
+        $('#inputDemirbas').click(function () {
             $('td').remove();
             $.getJSON('/Arama/DemirbaslariGetir', { demirbasId: $("#inputDemirbas option:selected").val() }, function (sonuc) {
-                console.log(sonuc.demirbasTarih);
                 $('td').remove();
                 for(var i=0; i<sonuc.length; i++)
                 {
-                    console.log(sonuc[i].demirbasTarih);
                     $("#demirbas").append(
                         '<tr>' +
                         '<td>' + sonuc[i].demirbasKod + '</td>' +
