@@ -473,11 +473,10 @@ public localpersonel Login(string kulAdi, string parola)
 		SqlDataReader rd = cmdd.ExecuteReader();
 		if (rd.HasRows == true)
 		{
-			while (rd.Read())
-			{
+				rd.Read();
 				lp.personelAdi = rd["personelAdi"].ToString();
 				lp.yekiId = (int)rd["yetkiId"];
-			}
+			
 		}
 		conn.Dispose();
 		conn.Close();

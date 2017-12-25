@@ -56,7 +56,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/Content/dist/img/profil.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Kullanıcı Adı</span>
+                                <span class="hidden-xs">@Session["kullaniciAdi"].ToString()</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -111,7 +111,7 @@
                         <img src="~/Content/dist/img/profil.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Kullanıcı Adı</p>
+                        <p>@Session["kullaniciAdi"].ToString()</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -139,8 +139,11 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="/Kayit/StokEkle"><i class="fa fa-check-square-o"></i>Stok Kaydı</a></li>
-                            <li><a href="/Kayit/OdaEkle"><i class="fa fa-check-square-o"></i> Oda Kaydı</a></li>
+                            @if (Session["yetki"].ToString() == "1")
+                            {
+                                <li class="active"><a href="/Kayit/StokEkle"><i class="fa fa-check-square-o"></i>Stok Kaydı</a></li>
+                                <li><a href="/Kayit/OdaEkle"><i class="fa fa-check-square-o"></i> Oda Kaydı</a></li>
+                            }
                             <li><a href="/Kayit/OdayaDemirbasEkle"><i class="fa fa-check-square-o"></i> Odaya Demirbaş Ekle</a></li>
                         </ul>
                     </li>

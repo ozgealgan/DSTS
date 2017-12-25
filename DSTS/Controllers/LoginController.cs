@@ -23,7 +23,7 @@ namespace DSTS.Controllers
 			if (data.personelAdi!= null)
 			{
 				Session.Timeout = 120;
-				Session.Add("kullaniciAdi", data.kullaniciAdi);
+				Session.Add("kullaniciAdi", data.personelAdi);
 				Session.Add("yetki", data.yekiId);
 				return Redirect("/Arama/OdaAdinaGoreAra");
 			}

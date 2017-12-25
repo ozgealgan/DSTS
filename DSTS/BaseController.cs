@@ -9,8 +9,8 @@ namespace DSTS
 	public class baseController: System.Web.Mvc.Controller
 	{
 		protected override void OnActionExecuted(ActionExecutedContext filterContext)
-		{/*
-			string controllerName = filterContext.RouteData.Values["controller"].ToString();
+		{
+			/*string controllerName = filterContext.RouteData.Values["controller"].ToString();
 			string actionName = filterContext.RouteData.Values["action"].ToString();
 			bool kontrol = controllerName == "Login" && actionName == "Index";
 
