@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace DSTS.Controllers
 {
-    public class AramaController : Controller
-    {
+    public class AramaController : baseController
+	{
 		business bl = new business();
         // GET: Arama
         public ActionResult PersoneleGoreAra()
@@ -41,27 +41,30 @@ namespace DSTS.Controllers
 			return View();
 		}
 
-		[HttpPost]
-		public ActionResult DemirbasSayisiniArama(string aranacak, string aranacakDeger)
+		public JsonResult DBSayisiniArama(int secim)
 		{
-			if(aranacak== "Demirbaş Adına Göre Ara")
+			if(secim==1)
 			{
-				ViewBag.Ad = bl.spDemirbasAdinaGoreAra(aranacakDeger);
+				return Json(bl.spDemirbasAdinaGoreAra(), JsonRequestBehavior.AllowGet);
 			}
-			else if(aranacak== "Demirbaş Türüne Göre Ara")
+			else if (secim == 2)
 			{
-				ViewBag.tur = bl.spTuruneGoreAra(aranacakDeger);
+				return Json(bl.spTuruneGoreAra(), JsonRequestBehavior.AllowGet);
 			}
-			else if(aranacak== "Demirbaş Fiyatına Göre Ara")
+			else if(secim==3)
 			{
-				ViewBag.fiyat = bl.spFiyatınaGoreAra(aranacakDeger);
+				return Json(bl.spFiyatınaGoreAra(), JsonRequestBehavior.AllowGet);
 			}
-			else if(aranacak== "Demirbaş Alım Tarihine Göre Ara")
+			else if(secim==4)
 			{
-				ViewBag.tarih = bl.spTariheGoreAra(aranacakDeger);
+				return Json(bl.spTariheGoreAra(), JsonRequestBehavior.AllowGet);
 			}
-		
-			return View();
+				return Json(false, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult DemirbaslariGetir(int demirbasId)
+		{
+			return Json(bl.DemirbaslariGetir(demirbasId), JsonRequestBehavior.AllowGet);
 		}
 	}
 }

@@ -7,6 +7,7 @@ namespace DSTS.localClass
 {
     public class localDemirbas
     {
+		public int demirbasId { get; set; }
         public int fakulteId { get; set; }
         public string demirbasAdi { get; set; }
         public int demirbasAdet { get; set; }

@@ -4,36 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DSTS.BusinessLayer;
 
 namespace DSTS.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : baseController
 	{
-		DemirbasTakipEntities db = new DemirbasTakipEntities();
+		business bl = new business();
 
 		public ActionResult Index()
 		{
 			return View();
 		}
 
-		[AllowAnonymous]
-		public ActionResult Login()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public ActionResult Login(string kulAdi, string parola)
-		{
-			if(db.tblPersonels.Any(x=> x.kullaniciAdi==kulAdi && x.personelParola==parola))
-			{
-				return RedirectToAction("Index", "Home");
-			}
-			else
-			{
-				ViewBag.mesaj = "Kullanıcı adı veya parola hatalı !";
-				return View();
-			}
-		}
 	}
 }
