@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace DSTS.Controllers
 {
-	public class LoginController : Controller
+	public class LoginController : baseController
 	{
 		business bl = new business();
 		// GET: Login
@@ -20,7 +20,7 @@ namespace DSTS.Controllers
 		public ActionResult Login(string kulAdi, string parola)
 		{
 			var data = bl.Login(kulAdi, parola);
-			if (data.personelAdi != null)
+			if (data.personelAdi!= null)
 			{
 				Session.Timeout = 120;
 				Session.Add("kullaniciAdi", data.kullaniciAdi);

@@ -454,36 +454,36 @@ namespace DSTS.BusinessLayer
 
         }
 
-    }
-        }
+    
+        
 
-		public localpersonel Login(string kulAdi, string parola)
+public localpersonel Login(string kulAdi, string parola)
+{
+	localpersonel lp = new localpersonel();
+	using (SqlConnection conn = new SqlConnection(conStrig))
+	{
+		conn.Open();
+
+		SqlCommand cmdd = new SqlCommand("spLogin", conn);
+		cmdd.Parameters.Add(new SqlParameter("@kulAdi", kulAdi));
+		cmdd.Parameters.Add(new SqlParameter("@parola", parola));
+
+		cmdd.CommandTimeout = 600;
+		cmdd.CommandType = CommandType.StoredProcedure;
+		SqlDataReader rd = cmdd.ExecuteReader();
+		if (rd.HasRows == true)
 		{
-			localpersonel lp = new localpersonel();
-			using (SqlConnection conn = new SqlConnection(conStrig))
+			while (rd.Read())
 			{
-				conn.Open();
-
-				SqlCommand cmdd = new SqlCommand("spLogin", conn);
-				cmdd.Parameters.Add(new SqlParameter("@kulAdi", kulAdi));
-				cmdd.Parameters.Add(new SqlParameter("@parola", parola));
-
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						lp.personelAdi = rd["personelAdi"].ToString();
-						lp.yekiId = (int) rd["yetkiId"];
-					}
-				}
-				conn.Dispose();
-				conn.Close();
+				lp.personelAdi = rd["personelAdi"].ToString();
+				lp.yekiId = (int)rd["yetkiId"];
 			}
-			return lp;
 		}
+		conn.Dispose();
+		conn.Close();
+	}
+	return lp;
+}
 
 		public localDemirbas DemirbaslariGetir(int demirbasId)
 		{

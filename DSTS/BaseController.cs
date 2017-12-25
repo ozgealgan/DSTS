@@ -10,19 +10,20 @@ namespace DSTS
 	{
 		protected override void OnActionExecuted(ActionExecutedContext filterContext)
 		{
-		/*	string controllerName = filterContext.RouteData.Values["controller"].ToString();
+			string controllerName = filterContext.RouteData.Values["controller"].ToString();
 			string actionName = filterContext.RouteData.Values["action"].ToString();
-			bool kontrol = controllerName == "Home" && actionName == "Login";
+			bool kontrol = controllerName == "Login" && actionName == "Index";
 
 			if(!kontrol)
 			{
-				if (Session["yetki"] == null || Session["yetki"].ToString() != "1" || Session["yetki"].ToString() != "2")
+				if (Session["yetki"] == null || ( Session["yetki"].ToString() != "1" && Session["yetki"].ToString() != "2"))
 				{
-					filterContext.Result = new RedirectResult("/Login/Login");
+					filterContext.Result = new RedirectResult("/Login/Index");
 					return;
 				}
-				base.OnActionExecuted(filterContext);
-			}*/
+				
+			}
+			base.OnActionExecuted(filterContext);
 		}
 	}
 }

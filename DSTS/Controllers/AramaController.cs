@@ -11,6 +11,7 @@ namespace DSTS.Controllers
 	{
 		business bl = new business();
         // GET: Arama
+		//
         public ActionResult PersoneleGoreAra()
         {
             return View();
