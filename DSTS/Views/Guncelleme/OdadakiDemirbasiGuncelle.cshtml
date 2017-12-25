@@ -29,33 +29,23 @@
             <div class="box-body">
 
                 <div class="form-group">
+                    <div>
+                        <h3 class="box-title col-sm-11 control-label">Değiştirilecek Olan Odayı, Odanın Bulunduğu Fakülteki Ve Değiştirilecek Olan Demirbaşı Seçin </h3>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="inputFakulte" class="col-sm-2 control-label">Fakülte </label>
 
                     <div class="col-sm-10">
-                        <select id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
+                        <select id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputOda" class="col-sm-2 control-label">Oda </label>
 
                     <div class="col-sm-10">
-                        <select id="inputOda" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
+                        <select name="odaAdi" id="inputOda" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true"></select>
                     </div>
                 </div>
 
@@ -63,15 +53,13 @@
                     <label for="inputDB" class="col-sm-2 control-label">Demirbaş </label>
 
                     <div class="col-sm-10">
-                        <select id="inputDB" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
+                        <select name="Demirbas" id="inputDB" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <h3 class="box-title col-sm-4 control-label">Demirbaşın Yeni Adetini Giriniz   </h3>
                     </div>
                 </div>
 
@@ -79,21 +67,91 @@
                     <label for="inputDBAdet" class="col-sm-2 control-label">Demirbaş Adedi</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputDBAdet" placeholder="Demirbaş Adedi">
+                        <input name="dbAdet" type="text" class="form-control" id="inputDBAdet" placeholder="Demirbaş Adedi">
                     </div>
                 </div>
+
+
 
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
 
-                <button type="submit" class="btn btn-info pull-right">Demirbaş Adedini Güncelle</button></br></br>
-                <button type="submit" class="btn btn-info pull-right">Demirbaşı Sil</button>
-                <button type="submit" class="btn btn-default">Geri Dön</button>
+                <button id="Guncelle" type="submit" class="btn btn-info pull-right">Odaya Demirbaşı Ekle</button>
+                <button id="GeriDon" type="submit" class="btn btn-default">Geri Dön</button>
             </div>
             <!-- /.box-footer -->
         </form>
     </div>
 
 </section>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Get a list of categories and a list of products of the first category.
+            $.getJSON('/Guncelleme/GetFakulte', null, function (data) {
+                $.each(data, function () {
+
+                    $('#inputFakulte').append('<option value=' +
+                    this.fakulteId + '>' + this.fakulteAdi + '</option>');
+                });
+                $.getJSON('/Guncelleme/GetOda', { intFakId: $('#inputFakulte').val() }, function (data) {
+                    $.each(data, function () {
+                        $('#inputOda').append('<option value="' +
+                          this.odaId + '">' + this.odaAdi + '</option>');
+                    });
+                    $.getJSON('/Guncelleme/GetOdaDemirbas', { odaId: $('#inputOda').val() }, function (data) {
+                        $.each(data, function () {
+                            $('#inputDB').append('<option value=' +
+                              this.demirbasId + '>' + this.demirbasKod + '-' + this.demirbasAdi + '-' + this.demirbasMarka + '-' + this.demirbasModel + '</option>');
+                        });
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        alert('Demirbaşları getirirken bir sorun oluştu!');
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Odaları getirirken bir soun oluştu!');
+                });
+
+                
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Fakülteleri getirirken bir sorun oluştu!');
+            });
+
+            // Dropdown list change event.
+            $('#inputOda').change(function () {
+                    $('#inputDB option').remove();
+                    $.getJSON('/Guncelleme/GetOdaDemirbas', { odaId: $('#inputOda  ').val() }, function (data) {
+                        $.each(data, function () {
+                            $('#inputDB').append('<option value=' +
+                              this.demirbasId + '>' + this.demirbasKod + '-' + this.demirbasAdi + '-' + this.demirbasMarka + '-' + this.demirbasModel + '</option>');
+                        });
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        alert('Demirbaşları getirirken bir sorun oluştu!');
+                    });
+                
+                
+            });
+
+            $("#Guncelle").click(function () {
+                var oda = $("#inputOda option:selected").val();
+                var demirbas = $("#inputDB option:selected").val();
+                var dbadet = $("#inputDBAdet").val();
+                $.ajax({
+                    url: '/Guncelleme/odaDBGuncelle',
+                    data: { odaId: oda, dbId: demirbas, adet: dbadet },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("Başarılı ");
+                    }
+                });
+            });
+        });
+
+    </script>
+
+}
 

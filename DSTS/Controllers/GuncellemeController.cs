@@ -15,6 +15,9 @@ namespace DSTS.Controllers
         {
             return View();
         }
+
+
+
         public ActionResult OdaBilgileriniGuncelleme()
         {
             ViewBag.personeller = bl.PersonelAdi();
@@ -35,6 +38,17 @@ namespace DSTS.Controllers
         public JsonResult GetOda(int intFakId)
         {
             return Json(bl.OdaAdiGetir().Where(p => p.fakulteId == intFakId), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetOdaDemirbas(int odaId)
+        {
+            return Json(bl.OdadakiDbGetir(odaId), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult odaDBGuncelle(string odaId, string dbId, string adet)
+        {
+            bl.OdadakiDBGuncelle(odaId, dbId, adet);
+            return View(OdadakiDemirbasiGuncelle());
         }
     }
 }
