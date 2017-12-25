@@ -17,8 +17,24 @@ namespace DSTS.Controllers
         }
         public ActionResult OdaBilgileriniGuncelleme()
         {
-            ViewBag.fakulteler = bl.FakulteAdi();
+            ViewBag.personeller = bl.PersonelAdi();
             return View();
+        }
+
+        public ActionResult OdaBilgiGuncelle(string odaAdi, string odaId, string personelId)
+        {
+            bl.OdaBilgiGuncelle(odaAdi, odaId, personelId);
+            return View(OdaBilgileriniGuncelleme());
+        }
+
+        public JsonResult GetFakulte()
+        {
+            return Json(bl.FakulteAdi(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetOda(int intFakId)
+        {
+            return Json(bl.OdaAdiGetir().Where(p => p.fakulteId == intFakId), JsonRequestBehavior.AllowGet);
         }
     }
 }

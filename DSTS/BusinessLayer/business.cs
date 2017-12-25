@@ -339,7 +339,7 @@ namespace DSTS.BusinessLayer
                     {
                         localpersonel d = new localpersonel();
                         d.personelAdi = rd["personelAdi"].ToString();
-
+                        d.personelId = Convert.ToInt32(rd["personelId"]);
                         lp.Add(d);
                     }
                 }
@@ -390,6 +390,7 @@ namespace DSTS.BusinessLayer
                     while (rd.Read())
                     {
                         localOda d = new localOda();
+                        d.odaId = Convert.ToInt32(rd["odaId"]);
                         d.fakulteId = Convert.ToInt32(rd["fakulteId"]);
                         d.odaAdi = rd["odaAdi"].ToString();
 
@@ -448,6 +449,29 @@ namespace DSTS.BusinessLayer
                 cmdd.Parameters.Add(new SqlParameter("@demirbasAdedi", dbAdet));
                 
 
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+                cmdd.CommandTimeout = 600;
+                cmdd.ExecuteNonQuery();
+                conn.Dispose();
+                conn.Close();
+            }
+
+        }
+
+        public void OdaBilgiGuncelle(string odaAdi, string odaId, string personelId)
+        {
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+
+                SqlCommand cmdd = new SqlCommand("spOdaBilgiGuncelle", conn);
+                cmdd.CommandType = CommandType.StoredProcedure;
+
+                cmdd.Parameters.Add(new SqlParameter("@odaId", Convert.ToInt32(odaId)));
+                cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
+                cmdd.Parameters.Add(new SqlParameter("@personelid", Convert.ToInt32(personelId)));
+               
                 SqlDataAdapter da = new SqlDataAdapter(cmdd);
 
                 cmdd.CommandTimeout = 600;
