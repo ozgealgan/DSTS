@@ -517,6 +517,25 @@ public localpersonel Login(string kulAdi, string parola)
 			}
 			return ld;
 		}
+		public void OdadanDbSil(int demirbasId, string odaAdi)
+		{
+			localDemirbas ld = new localDemirbas();
+			using (SqlConnection conn = new SqlConnection(conStrig))
+			{
+				conn.Open();
+
+				SqlCommand cmdd = new SqlCommand("spOdadanDbSil", conn);
+				cmdd.Parameters.Add(new SqlParameter("@demirbasId", demirbasId));
+				cmdd.Parameters.Add(new SqlParameter("@odaAdi", "Lab202"));
+				SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+				cmdd.CommandTimeout = 600;
+				cmdd.CommandType = CommandType.StoredProcedure;
+				
+				conn.Dispose();
+				conn.Close();
+			}
+		}
 	}
 
 }

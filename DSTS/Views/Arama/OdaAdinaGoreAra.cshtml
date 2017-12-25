@@ -59,9 +59,13 @@
                                     <td>@l.demirbasAdi</td>
                                     <td>@l.tur</td>
                                     <td>@l.adet</td>
+                                    <td>
+                                        @Html.ActionLink("Sil", "OdadanDbSil", new { id = l.demirbasId })
+                                    </td>
                                 </tr>
 }
                         }
+
                     </tbody>
                 </table>
             </div>

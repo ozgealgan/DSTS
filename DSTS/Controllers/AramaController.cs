@@ -36,6 +36,12 @@ namespace DSTS.Controllers
 			ViewBag.odaDemirbas = bl.spOdayaGoreDemirbas(odaAdi);
 			return View();
 		}
+		public ActionResult OdadanDbSil(int id, string odaAdi)
+		{
+			bl.OdadanDbSil(id, odaAdi);
+			return RedirectToAction("OdaAdinaGoreAra", "Arama");
+
+		}
 
 		public ActionResult DemirbasSayisiniArama()
 		{
@@ -67,5 +73,7 @@ namespace DSTS.Controllers
 		{
 			return Json(bl.DemirbaslariGetir(demirbasId), JsonRequestBehavior.AllowGet);
 		}
+
+		
 	}
 }
