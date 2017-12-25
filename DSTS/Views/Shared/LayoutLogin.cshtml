@@ -1,4 +1,5 @@
 ﻿
+
 @{
     Layout = null;
 }
@@ -26,7 +27,7 @@
                 Login
             </div>
             <div class="card-body">
-                <form method="post" action="~/Home/Login">
+                <form method="post" action="~/Login/Login">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="text" name="kulAdi" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -47,6 +48,7 @@
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                 </form>
+                @RenderBody()
 
                 @if (ViewBag.mesaj != null)
                 {

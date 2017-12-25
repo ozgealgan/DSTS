@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace DSTS.Controllers
 {
-    public class KayitController : Controller
-    {
+    public class KayitController : baseController
+	{
         business bl = new business();
         // GET: Kayit
         public ActionResult StokEkle()
