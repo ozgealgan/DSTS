@@ -33,5 +33,13 @@ namespace DSTS.Controllers
 				return View();
 			}
 		}
+
+		public ActionResult LogOut()
+		{
+			Session["yetki"] = null;
+			Session["kullaniciAdi"] = null;
+			Session.Abandon();
+			return RedirectToAction("Index", "Login");
+		}
 	}
 }
