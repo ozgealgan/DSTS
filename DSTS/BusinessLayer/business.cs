@@ -282,7 +282,7 @@ namespace DSTS.BusinessLayer
 					{
 						localDemirbas d = new localDemirbas();
 						d.demirbasId = (int)rd["demirbasId"];
-						d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
+						d.demirbasTarih = rd["alimTarihi"].ToString().Substring(0, 10);
 						ld.Add(d);
 					}
 				}
@@ -506,7 +506,7 @@ public localpersonel Login(string kulAdi, string parola)
 						d.demirbasAdi = rd["demirbasAdi"].ToString();
 						d.tur = rd["turAdi"].ToString();
 						d.demirbasFiyat = Convert.ToDecimal(rd["fiyat"]);
-						d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
+						d.demirbasTarih = rd["alimTarihi"].ToString().Substring(0,10);
 						d.demirbasAdet = (int)rd["demirbasAdet"];
 						d.odaAdi = rd["odaAdi"].ToString();
 						d.adet = (int)rd["adet"];

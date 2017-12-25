@@ -71,6 +71,7 @@ namespace DSTS.Controllers
 
 		public JsonResult DemirbaslariGetir(int demirbasId)
 		{
+			ViewBag.data = bl.DemirbaslariGetir(demirbasId);
 			return Json(bl.DemirbaslariGetir(demirbasId), JsonRequestBehavior.AllowGet);
 		}
 
