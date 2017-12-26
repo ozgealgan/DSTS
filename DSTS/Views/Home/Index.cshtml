@@ -1,7 +1,259 @@
-﻿
+﻿@using DSTS.localClass
 @{
     ViewBag.Title = "Index";
+    List<localDemirbas> ld = ViewBag.demirbaslar;
+    List<localOda> lo = ViewBag.odalar;
+    List<localpersonel> lp = ViewBag.personeller;
+    List<localFakulte> lf = ViewBag.fakulteler;
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                @{  int toplamd = 0; }
 
+                @if (ld != null)
+                {
+                    foreach (localDemirbas d in ld)
+                    {
+                        toplamd += d.demirbasAdet;
+                    }
+                }
+
+                <h3>@toplamd</h3>
+                <p>Demirbaşlar</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="/Arama/DemirbasSayisiniArama" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+
+                @{  int toplamp = 0; }
+
+                @if (ld != null)
+                {
+                    foreach (localpersonel p in lp)
+                    {
+                        toplamp++;
+                    }
+                }
+
+                <h3> @toplamp</h3>
+                <p>Personeller</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                @{  int toplamo = 0; }
+
+                @if (lo != null)
+                {
+                    foreach (localOda o in lo)
+                    {
+                        toplamo++;
+                    }
+                }
+                <h3>@toplamo</h3>
+                <p>Odalar</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                @{  int toplamf = 0; }
+
+                @if (lf != null)
+                {
+                    foreach (localFakulte f in lf)
+                    {
+                        toplamf++;
+
+                    }
+                }
+
+                <h3>@toplamf</h3>
+                <p>Fakülteler</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+<div class="col-md-3">
+    <!-- USERS LIST -->
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Stoktaki Demirbaşlar</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+                @if (ld != null)
+                {
+                    foreach (localDemirbas l in ld)
+                    {
+                        <li>
+                            <img src="~/Content/dist/img/demirbas.png" alt="Demirbas Image">
+                            <a class="users-list-name" href="#">@l.demirbasAdi</a>
+                            <span class="users-list-date">@l.demirbasFiyat</span>
+                        </li>}
+
+                }
+
+            </ul>
+            <!-- /.users-list -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+            <a href="javascript:void(0)" class="uppercase">View All Users</a>
+        </div>
+        <!-- /.box-footer -->
+    </div>
+    <!--/.box -->
+</div>
+<div class="col-md-3">
+    <!-- USERS LIST -->
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Personeller</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+                @if (lp != null)
+                {
+                    foreach (localpersonel p in lp)
+                    {
+                        <li>
+                            <img src="~/Content/dist/img/kullanici.png" alt="Personel Image">
+                            <a class="users-list-name" href="#">@p.personelAdi</a>
+                        </li>}
+
+                }
+            </ul>
+            <!-- /.users-list -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+            <a href="javascript:void(0)" class="uppercase">View All Users</a>
+        </div>
+        <!-- /.box-footer -->
+    </div>
+    <!--/.box -->
+</div>
+<div class="col-md-3">
+    <!-- USERS LIST -->
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Odalar</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+                @if (lo != null)
+                {
+                    foreach (localOda o in lo)
+                    {
+                        <li>
+                            <img src="~/Content/dist/img/oda.png" alt="Oda Image">
+                            <a class="users-list-name" href="#">@o.odaAdi</a>
+                        </li>
+}
+                }
+            </ul>
+            <!-- /.users-list -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+            <a href="javascript:void(0)" class="uppercase">View All Users</a>
+        </div>
+        <!-- /.box-footer -->
+    </div>
+    <!--/.box -->
+</div>
+<div class="col-md-3">
+    <!-- USERS LIST -->
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Fakülteler</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <ul class="users-list clearfix">
+                @foreach (localFakulte f in lf)
+                {
+                    <li>
+                        <img src="~/Content/dist/img/fakulte.png" alt="Fakulte Image">
+                        <a class="users-list-name" href="#">@f.fakulteAdi</a>
+                    </li>}
+
+            </ul>
+            <!-- /.users-list -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+            <a href="javascript:void(0)" class="uppercase">View All Users</a>
+        </div>
+        <!-- /.box-footer -->
+    </div>
+    <!--/.box -->
+</div>

@@ -31,6 +31,7 @@ namespace DSTS.Models
         public int fakulteId { get; set; }
         public string demirbasKodu { get; set; }
     
+        public virtual tblFakulte tblFakulte { get; set; }
         public virtual tblTur tblTur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOdaDemirba> tblOdaDemirbas { get; set; }
