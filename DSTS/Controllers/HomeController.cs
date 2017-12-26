@@ -14,10 +14,10 @@ namespace DSTS.Controllers
 
 		public ActionResult Index()
 		{
-			ViewBag.demirbaslar = bl.DbListele();
-			ViewBag.odalar = bl.OdaListele();
-			ViewBag.personeller = bl.PersonelListele();
-			ViewBag.fakulteler = bl.FakulteListele();
+			//ViewBag.demirbaslar = bl.DbListele();
+			//ViewBag.odalar = bl.OdaListele();
+			//ViewBag.personeller = bl.PersonelListele();
+			//ViewBag.fakulteler = bl.FakulteListele();
 			return View();
 		}
 

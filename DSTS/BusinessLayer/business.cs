@@ -282,7 +282,7 @@ namespace DSTS.BusinessLayer
                     {
                         localDemirbas d = new localDemirbas();
                         d.demirbasId = (int)rd["demirbasId"];
-                        d.demirbasTarih = rd["alimTarihi"].ToString();
+                        d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
                         ld.Add(d);
                     }
                 }
@@ -540,18 +540,7 @@ namespace DSTS.BusinessLayer
             }
         }
 
-   /*     public void OdadakiDBGuncelle(string odaId, string dbId, string adet)
-        {
-            using (SqlConnection conn = new SqlConnection(conStrig))
-            {
-                conn.Open();
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-
-				conn.Dispose();
-				conn.Close();
-			}
-		}*/
+       
 
 		public void StoktanDbSil(int dbSil)
 		{

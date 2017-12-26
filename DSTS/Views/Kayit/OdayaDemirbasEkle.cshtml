@@ -55,7 +55,7 @@
                     <label for="inputDBAdet" class="col-sm-2 control-label">Demirbaş Adedi</label>
 
                     <div class="col-sm-10">
-                        <input name="dbAdet" type="text" class="form-control" id="inputDBAdet" placeholder="Demirbaş Adedi">
+                        <input required="required" pattern="\d*" title="Stoktaki değeri aştınız." name="dbAdet" type="text" class="form-control" id="inputDBAdet" placeholder="Demirbaş Adedi">
                     </div>
                 </div>
 
@@ -119,11 +119,13 @@
                 $.getJSON('/Kayit/GetDemirbas', { intFakId: $('#inputFakulte').val() }, function (data) {
                     $.each(data, function () {
                         $('#inputDB').append('<option value=' +
-                          this.demirbasId + '>' + this.demirbasKod + '-' + this.demirbasAdi + '-' + this.demirbasMarka + '-' + this.demirbasModel + '</option>');
+                          this.adet + '>' + this.demirbasKod + '-' + this.demirbasAdi + '-' + this.demirbasMarka + '-' + this.demirbasModel + '</option>');
                     });
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     alert('Demirbaşları getirirken bir sorun oluştu!');
                 });
+                var adet = $("#inputDB option:selected").Val();
+                $("#inputDBAdet").attr("max", adet);
             });
 
             $("#Ekle").click(function () {
