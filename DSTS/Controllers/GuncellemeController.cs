@@ -16,12 +16,23 @@ namespace DSTS.Controllers
             return View();
         }
 
-
+        public ActionResult odaDBGuncelle(string odaId, string dbId, string adet)
+        {
+            bl.OdadakiDBGuncelle(odaId, dbId, adet);
+            return View(OdadakiDemirbasiGuncelle());
+        }
 
         public ActionResult OdaBilgileriniGuncelleme()
         {
             ViewBag.personeller = bl.PersonelAdi();
             return View();
+        }
+       
+        public ActionResult OdaSilme(int odaId)
+        {
+
+            bl.OdaSilme(odaId);
+            return View(OdaBilgileriniGuncelleme());
         }
 
         public ActionResult OdaBilgiGuncelle(string odaAdi, string odaId, string personelId)
@@ -45,10 +56,24 @@ namespace DSTS.Controllers
             return Json(bl.OdadakiDbGetir(odaId), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult odaDBGuncelle(string odaId, string dbId, string adet)
+        
+        public ActionResult StoktakiDemirbasiGuncelle()
         {
-            bl.OdadakiDBGuncelle(odaId, dbId, adet);
-            return View(OdadakiDemirbasiGuncelle());
+            ViewBag.demirbaslar = bl.DemirbasAdlariniGetir();
+            return View();
         }
+
+        public ActionResult StoktakiDbGuncelle(string inputDB, string dbAdet, string inputDbFiyat)
+        {
+            bl.StoktakiDbGuncelle(inputDB.Substring(0,11), Convert.ToInt32(dbAdet), Convert.ToInt32(inputDbFiyat));
+            return View(StoktakiDemirbasiGuncelle());
+        }
+
+        public ActionResult DbSil(string dbKod)
+        {
+            bl.StoktakiDbSil(dbKod.Substring(0,12));
+            return View(StoktakiDemirbasiGuncelle());
+        }
+
     }
 }

@@ -14,16 +14,16 @@ namespace DSTS.BusinessLayer
         string conStrig = WebConfigurationManager.ConnectionStrings["Local_DatabaseConnection"].ConnectionString;
 
         public void StokEkle(string fakulteAdi, string dbAdi, int DbAdet, decimal dbFiyat, string dbtur, string dbMarka, string dbModel)
-        {           
+        {
             using (SqlConnection conn = new SqlConnection(conStrig))
             {
                 conn.Open();
-                
+
                 SqlCommand cmdd = new SqlCommand("spkayit", conn);
                 cmdd.CommandType = CommandType.StoredProcedure;
-               
+
                 cmdd.Parameters.Add(new SqlParameter("@demirbasFakulte", fakulteAdi));
-                cmdd.Parameters.Add(new SqlParameter("@demirbasAdi", dbAdi));                              
+                cmdd.Parameters.Add(new SqlParameter("@demirbasAdi", dbAdi));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasAdet", DbAdet));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasFiyat", dbFiyat));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasTur", dbtur));
@@ -35,43 +35,43 @@ namespace DSTS.BusinessLayer
 
                 cmdd.CommandTimeout = 600;
                 cmdd.ExecuteNonQuery();
-                conn.Dispose();               
+                conn.Dispose();
                 conn.Close();
             }
-         
+
         }
 
-		public List<localDemirbas> PersoneleGoreAra(string personelAdi)
-		{
-			List<localDemirbas> ld = new List<localDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spPersoneleGoreAra", conn);
-				cmdd.Parameters.Add(new SqlParameter("@personelAdi", personelAdi));
+        public List<localDemirbas> PersoneleGoreAra(string personelAdi)
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spPersoneleGoreAra", conn);
+                cmdd.Parameters.Add(new SqlParameter("@personelAdi", personelAdi));
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localDemirbas d = new localDemirbas();
-						d.odaAdi = rd["odaAdi"].ToString();
-						d.demirbasKod = rd["demirbasKodu"].ToString();
-						d.demirbasAdi = rd["demirbasAdi"].ToString();
-						d.demirbasMarka = rd["marka"].ToString();
-						d.demirbasModel = rd["model"].ToString();
-						d.adet = (int)rd["adet"];
-						ld.Add(d);
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.odaAdi = rd["odaAdi"].ToString();
+                        d.demirbasKod = rd["demirbasKodu"].ToString();
+                        d.demirbasAdi = rd["demirbasAdi"].ToString();
+                        d.demirbasMarka = rd["marka"].ToString();
+                        d.demirbasModel = rd["model"].ToString();
+                        d.adet = (int)rd["adet"];
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
 
         public List<localFakulte> FakulteAdi()
         {
@@ -80,7 +80,7 @@ namespace DSTS.BusinessLayer
             {
                 conn.Open();
                 SqlCommand cmdd = new SqlCommand("spFakulteGetir", conn);
-                
+
 
                 cmdd.CommandTimeout = 600;
                 cmdd.CommandType = CommandType.StoredProcedure;
@@ -92,7 +92,7 @@ namespace DSTS.BusinessLayer
                         localFakulte d = new localFakulte();
                         d.fakulteAdi = rd["fakulteAdi"].ToString();
                         d.fakulteId = Convert.ToInt32(rd["fakulteId"]);
-                        
+
                         ld.Add(d);
                     }
                 }
@@ -129,170 +129,170 @@ namespace DSTS.BusinessLayer
             return ld;
         }
 
-		public localpersonel spOdayaGorePersonel(string odaAdi)
-		{
-			localpersonel lp = new localpersonel();
+        public localpersonel spOdayaGorePersonel(string odaAdi)
+        {
+            localpersonel lp = new localpersonel();
 
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spOdayaGorePersonel", conn);
-				cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spOdayaGorePersonel", conn);
+                cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					rd.Read();
-					lp.personelAdi = rd["personelAdi"].ToString();
-					
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return lp;
-		}
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    rd.Read();
+                    lp.personelAdi = rd["personelAdi"].ToString();
 
-		public List<localDemirbas> spOdayaGoreDemirbas(string odaAdi)
-		{
-			List<localDemirbas> ld = new List<localDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spOdayaGoreDemirbas", conn);
-				cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return lp;
+        }
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while(rd.Read())
-					{
-						localDemirbas d = new localDemirbas();
-						d.demirbasKod= rd["demirbasKodu"].ToString();
-						d.demirbasAdi = rd["demirbasAdi"].ToString();
-						d.tur = rd["turAdi"].ToString();
-						d.adet=(int)rd["adet"];
-						ld.Add(d);
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
+        public List<localDemirbas> spOdayaGoreDemirbas(string odaAdi)
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spOdayaGoreDemirbas", conn);
+                cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
 
-		public List<localDemirbas> spDemirbasAdinaGoreAra()
-		{
-			List<localDemirbas> ld = new List<localDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spDemirbasAdinaGoreAra", conn);
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.demirbasKod = rd["demirbasKodu"].ToString();
+                        d.demirbasAdi = rd["demirbasAdi"].ToString();
+                        d.tur = rd["turAdi"].ToString();
+                        d.adet = (int)rd["adet"];
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localDemirbas d = new localDemirbas();
-						d.demirbasId = (int)rd["demirbasId"];
-						d.demirbasAdi = rd["demirbasAdi"].ToString();
-						ld.Add(d);
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
+        public List<localDemirbas> spDemirbasAdinaGoreAra()
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spDemirbasAdinaGoreAra", conn);
 
-		public List<localDemirbas> spTuruneGoreAra()
-		{
-			List<localDemirbas> ld = new List<localDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spTuruneGoreAra", conn);
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.demirbasId = (int)rd["demirbasId"];
+                        d.demirbasAdi = rd["demirbasAdi"].ToString();
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localDemirbas d = new localDemirbas();
-						d.demirbasId = (int)rd["demirbasId"];
-						d.tur = rd["turAdi"].ToString();
-						ld.Add(d);
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
+        public List<localDemirbas> spTuruneGoreAra()
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spTuruneGoreAra", conn);
 
-		public List<localDemirbas> spFiyatınaGoreAra()
-		{
-			List<localDemirbas> ld = new List<localDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spFiyatınaGoreAra", conn);
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.demirbasId = (int)rd["demirbasId"];
+                        d.tur = rd["turAdi"].ToString();
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localDemirbas d = new localDemirbas();
-						d.demirbasId = (int)rd["demirbasId"];
-						d.demirbasFiyat = (decimal)rd["fiyat"];
-						ld.Add(d);
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
+        public List<localDemirbas> spFiyatınaGoreAra()
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spFiyatınaGoreAra", conn);
 
-		public List<localDemirbas> spTariheGoreAra()
-		{
-			List<localDemirbas> ld = new List<localDemirbas>();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
-				SqlCommand cmdd = new SqlCommand("spTariheGoreAra", conn);
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.demirbasId = (int)rd["demirbasId"];
+                        d.demirbasFiyat = (decimal)rd["fiyat"];
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						localDemirbas d = new localDemirbas();
-						d.demirbasId = (int)rd["demirbasId"];
-						d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
-						ld.Add(d);
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
+        public List<localDemirbas> spTariheGoreAra()
+        {
+            List<localDemirbas> ld = new List<localDemirbas>();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+                SqlCommand cmdd = new SqlCommand("spTariheGoreAra", conn);
 
-	
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        localDemirbas d = new localDemirbas();
+                        d.demirbasId = (int)rd["demirbasId"];
+                        d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
+                        ld.Add(d);
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
+
+
         public List<localpersonel> PersonelAdi()
         {
             List<localpersonel> lp = new List<localpersonel>();
@@ -333,7 +333,7 @@ namespace DSTS.BusinessLayer
                 cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
                 cmdd.Parameters.Add(new SqlParameter("@sorumluAd", sorumluAdi));
                 cmdd.Parameters.Add(new SqlParameter("@fakulteAdi", fakulteAdi));
-               
+
 
                 SqlDataAdapter da = new SqlDataAdapter(cmdd);
 
@@ -419,7 +419,7 @@ namespace DSTS.BusinessLayer
                 cmdd.Parameters.Add(new SqlParameter("@oda", odaAdi));
                 cmdd.Parameters.Add(new SqlParameter("@demirbas", Demirbas));
                 cmdd.Parameters.Add(new SqlParameter("@demirbasAdedi", dbAdet));
-                
+
 
                 SqlDataAdapter da = new SqlDataAdapter(cmdd);
 
@@ -443,7 +443,7 @@ namespace DSTS.BusinessLayer
                 cmdd.Parameters.Add(new SqlParameter("@odaId", Convert.ToInt32(odaId)));
                 cmdd.Parameters.Add(new SqlParameter("@odaAdi", odaAdi));
                 cmdd.Parameters.Add(new SqlParameter("@personelid", Convert.ToInt32(personelId)));
-               
+
                 SqlDataAdapter da = new SqlDataAdapter(cmdd);
 
                 cmdd.CommandTimeout = 600;
@@ -454,88 +454,88 @@ namespace DSTS.BusinessLayer
 
         }
 
-    
-        
 
-public localpersonel Login(string kulAdi, string parola)
-{
-	localpersonel lp = new localpersonel();
-	using (SqlConnection conn = new SqlConnection(conStrig))
-	{
-		conn.Open();
 
-		SqlCommand cmdd = new SqlCommand("spLogin", conn);
-		cmdd.Parameters.Add(new SqlParameter("@kulAdi", kulAdi));
-		cmdd.Parameters.Add(new SqlParameter("@parola", parola));
 
-		cmdd.CommandTimeout = 600;
-		cmdd.CommandType = CommandType.StoredProcedure;
-		SqlDataReader rd = cmdd.ExecuteReader();
-		if (rd.HasRows == true)
-		{
-				rd.Read();
-				lp.personelAdi = rd["personelAdi"].ToString();
-				lp.yekiId = (int)rd["yetkiId"];
-			
-		}
-		conn.Dispose();
-		conn.Close();
-	}
-	return lp;
-}
+        public localpersonel Login(string kulAdi, string parola)
+        {
+            localpersonel lp = new localpersonel();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
 
-		public localDemirbas DemirbaslariGetir(int demirbasId)
-		{
-			localDemirbas ld = new localDemirbas();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
+                SqlCommand cmdd = new SqlCommand("spLogin", conn);
+                cmdd.Parameters.Add(new SqlParameter("@kulAdi", kulAdi));
+                cmdd.Parameters.Add(new SqlParameter("@parola", parola));
 
-				SqlCommand cmdd = new SqlCommand("spDemirbaslariGetir", conn);
-				cmdd.Parameters.Add(new SqlParameter("@demirbasId", demirbasId));
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    rd.Read();
+                    lp.personelAdi = rd["personelAdi"].ToString();
+                    lp.yekiId = (int)rd["yetkiId"];
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				SqlDataReader rd = cmdd.ExecuteReader();
-				if (rd.HasRows == true)
-				{
-					while (rd.Read())
-					{
-						ld.demirbasKod = rd["demirbasKodu"].ToString();
-						ld.demirbasAdi = rd["demirbasAdi"].ToString();
-						ld.tur = rd["turAdi"].ToString();
-						ld.demirbasFiyat = Convert.ToDecimal(rd["fiyat"]);
-						ld.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
-						ld.demirbasAdet = (int)rd["demirbasAdet"];
-						ld.odaAdi = rd["odaAdi"].ToString();
-						ld.adet = (int)rd["adet"];
-					}
-				}
-				conn.Dispose();
-				conn.Close();
-			}
-			return ld;
-		}
-		public void OdadanDbSil(int demirbasId, string odaAdi)
-		{
-			localDemirbas ld = new localDemirbas();
-			using (SqlConnection conn = new SqlConnection(conStrig))
-			{
-				conn.Open();
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return lp;
+        }
 
-				SqlCommand cmdd = new SqlCommand("spOdadanDbSil", conn);
-				cmdd.Parameters.Add(new SqlParameter("@demirbasId", demirbasId));
-				cmdd.Parameters.Add(new SqlParameter("@odaAdi", "Lab202"));
-				SqlDataAdapter da = new SqlDataAdapter(cmdd);
+        public localDemirbas DemirbaslariGetir(int demirbasId)
+        {
+            localDemirbas ld = new localDemirbas();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
 
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-				
-				conn.Dispose();
-				conn.Close();
-			}
-		}
-	}
+                SqlCommand cmdd = new SqlCommand("spDemirbaslariGetir", conn);
+                cmdd.Parameters.Add(new SqlParameter("@demirbasId", demirbasId));
+
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rd = cmdd.ExecuteReader();
+                if (rd.HasRows == true)
+                {
+                    while (rd.Read())
+                    {
+                        ld.demirbasKod = rd["demirbasKodu"].ToString();
+                        ld.demirbasAdi = rd["demirbasAdi"].ToString();
+                        ld.tur = rd["turAdi"].ToString();
+                        ld.demirbasFiyat = Convert.ToDecimal(rd["fiyat"]);
+                        ld.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
+                        ld.demirbasAdet = (int)rd["demirbasAdet"];
+                        ld.odaAdi = rd["odaAdi"].ToString();
+                        ld.adet = (int)rd["adet"];
+                    }
+                }
+                conn.Dispose();
+                conn.Close();
+            }
+            return ld;
+        }
+        public void OdadanDbSil(int demirbasId, string odaAdi)
+        {
+            localDemirbas ld = new localDemirbas();
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+
+                SqlCommand cmdd = new SqlCommand("spOdadanDbSil", conn);
+                cmdd.Parameters.Add(new SqlParameter("@demirbasId", demirbasId));
+                cmdd.Parameters.Add(new SqlParameter("@odaAdi", "Lab202"));
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+
+                conn.Dispose();
+                conn.Close();
+            }
+        }
+
         public void OdadakiDBGuncelle(string odaId, string dbId, string adet)
         {
             using (SqlConnection conn = new SqlConnection(conStrig))
@@ -566,7 +566,7 @@ public localpersonel Login(string kulAdi, string parola)
             {
                 conn.Open();
                 SqlCommand cmdd = new SqlCommand("spOdadakiDBGetir", conn);
-                cmdd.Parameters.Add(new SqlParameter("@odaId",odaId));
+                cmdd.Parameters.Add(new SqlParameter("@odaId", odaId));
 
                 cmdd.CommandTimeout = 600;
                 cmdd.CommandType = CommandType.StoredProcedure;
@@ -579,7 +579,7 @@ public localpersonel Login(string kulAdi, string parola)
                         d.demirbasKod = rd["demirbasKodu"].ToString();
                         d.demirbasAdi = rd["demirbasAdi"].ToString();
                         d.demirbasMarka = rd["Marka"].ToString();
-                        d.demirbasModel = rd["model"].ToString();                        
+                        d.demirbasModel = rd["model"].ToString();
                         d.demirbasId = Convert.ToInt32(rd["demirbasId"]);
 
                         ld.Add(d);
@@ -589,6 +589,67 @@ public localpersonel Login(string kulAdi, string parola)
                 conn.Close();
             }
             return ld;
+        }
+
+        public void OdaSilme(int odaid)
+        {
+          
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+
+                SqlCommand cmdd = new SqlCommand("spOdayiSil", conn);
+                cmdd.Parameters.Add(new SqlParameter("@odaId", odaid));
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                cmdd.ExecuteNonQuery();
+                conn.Dispose();
+                conn.Close();
+            }
+        }
+
+        public void StoktakiDbGuncelle(string dbKod, int dbAdet, int dbFiyat)
+        {
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+
+                SqlCommand cmdd = new SqlCommand("spStokDbGucelle", conn);
+                cmdd.CommandType = CommandType.StoredProcedure;
+
+                cmdd.Parameters.Add(new SqlParameter("@dbKod", dbKod));
+                cmdd.Parameters.Add(new SqlParameter("@dbAdet", dbAdet));
+                cmdd.Parameters.Add(new SqlParameter("@dbFiyat", dbFiyat));
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+                cmdd.CommandTimeout = 600;
+                cmdd.ExecuteNonQuery();
+                conn.Dispose();
+                conn.Close();
+            }
+
+        }
+
+        public void StoktakiDbSil(string dbKod)
+        {
+            using (SqlConnection conn = new SqlConnection(conStrig))
+            {
+                conn.Open();
+
+                SqlCommand cmdd = new SqlCommand("spStoktanDBasSil", conn);
+                cmdd.Parameters.Add(new SqlParameter("@demirbasKod", dbKod));
+                SqlDataAdapter da = new SqlDataAdapter(cmdd);
+
+                cmdd.CommandTimeout = 600;
+                cmdd.CommandType = CommandType.StoredProcedure;
+                cmdd.ExecuteNonQuery();
+                conn.Dispose();
+                conn.Close();
+            }
         }
 
     }

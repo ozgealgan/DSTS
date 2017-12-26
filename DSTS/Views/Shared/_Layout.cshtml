@@ -56,7 +56,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/Content/dist/img/profil.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">@Session["kullaniciAdi"].ToString()</span>
+                               <span class="hidden-xs">@*@Session["kullaniciAdi"].ToString()*@</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -111,7 +111,7 @@
                         <img src="~/Content/dist/img/profil.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>@Session["kullaniciAdi"].ToString()</p>
+                        @*<p>@Session["kullaniciAdi"].ToString()</p>*@
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            @if (Session["yetki"].ToString() == "1")
+                            @if (@*Session["yetki"].ToString() == "1"*@ true)
                             {
                                 <li class="active"><a href="/Kayit/StokEkle"><i class="fa fa-check-square-o"></i>Stok Kaydı</a></li>
                                 <li><a href="/Kayit/OdaEkle"><i class="fa fa-check-square-o"></i> Oda Kaydı</a></li>
@@ -156,8 +156,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/Guncelleme/OdadakiDemirbasiGuncelle"><i class="fa fa-dot-circle-o"></i>Odadaki Demirbaşı Güncelle</a></li>                           
+                            <li><a href="/Guncelleme/StoktakiDemirbasiGuncelle"><i class="fa fa-dot-circle-o"></i>Stoktaki Demirbaşı Güncelle</a></li>                      
                             <li><a href="/Guncelleme/OdaBilgileriniGuncelleme"><i class="fa fa-dot-circle-o"></i>Oda Bilgilerini Güncelleme</a></li>
+                            <li><a href="/Guncelleme/OdadakiDemirbasiGuncelle"><i class="fa fa-dot-circle-o"></i>Odadaki Demirbaşı Güncelle</a></li>
                         </ul>
                     </li>
 

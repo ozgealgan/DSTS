@@ -81,9 +81,9 @@
             <!-- /.box-body -->
             <div class="box-footer">
 
-                <button id="Guncelle" type="submit" class="btn btn-info pull-right">Oda Bilgilerini Güncelle</button></br></br>
+                <button id="Guncelle" type="submit" class="btn btn-info pull-right">Oda Bilgilerini Güncelle</button><br><br>
                 <button id="Sil" type="submit" class="btn btn-info pull-right">Odayı Sil</button>
-                <button id="GeriDon" type="submit" class="btn btn-default">Geri Dön</button>
+
             </div>
             <!-- /.box-footer -->
         </form>
@@ -96,6 +96,7 @@
         $(document).ready(function () {
             // Get a list of categories and a list of products of the first category.
             $.getJSON('/Guncelleme/GetFakulte', null, function (data) {
+                console.log(data);
                 $.each(data, function () {
 
                     $('#inputFakulte').append('<option value=' +
@@ -113,8 +114,6 @@
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 alert('Fakülteleri getirirken bir sorun oluştu!');
             });
-
-            // Dropdown list change event.
             $('#inputFakulte').change(function () {
                 $('#EskiOda option').remove();
                 $.getJSON('/Guncelleme/GetOda', { intFakId: $('#inputFakulte').val() }, function (data) {
@@ -136,11 +135,19 @@
                     url: '/Guncelleme/OdaBilgiGuncelle',
                     data: { odaAdi: oda, odaId: odaId, personelId: personel },
                     type: 'POST',
-                    dataType: 'json',
-                    success: function (data) {
-                        alert("Başarılı ");
-                    }
+                    dataType: 'json'
                 });
+            });
+
+            $("#Sil").click(function () {
+                var odaId = $("#EskiOda option:selected").val();
+                $.ajax({
+                    url: '/Guncelleme/OdaSilme',
+                    data: { odaId: odaId },
+                    type: 'POST',
+                    dataType: 'json'
+                });
+
             });
         });
 
