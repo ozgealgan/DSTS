@@ -41,6 +41,6 @@ namespace DSTS.Controllers
 				Session["kullaniciAdi"] = null;
 				Session.Abandon();
 				return RedirectToAction("Index", "Login");
-			}
+			} //
 	}
 }
