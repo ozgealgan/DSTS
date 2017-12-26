@@ -20,12 +20,12 @@ namespace DSTS.Controllers
 		public ActionResult Login(string kulAdi, string parola)
 		{
 			var data = bl.Login(kulAdi, parola);
-			if (data.personelAdi!= null)
+			if (data.personelAdi != null)
 			{
 				Session.Timeout = 120;
 				Session.Add("kullaniciAdi", data.personelAdi);
 				Session.Add("yetki", data.yekiId);
-				return Redirect("/Arama/OdaAdinaGoreAra");
+				return Redirect("/Home/Index");
 			}
 			else
 			{
@@ -34,12 +34,13 @@ namespace DSTS.Controllers
 			}
 		}
 
-		public ActionResult LogOut()
-		{
-			Session["yetki"] = null;
-			Session["kullaniciAdi"] = null;
-			Session.Abandon();
-			return RedirectToAction("Index", "Login");
-		}
+
+			public ActionResult LogOut()
+			{
+				Session["yetki"] = null;
+				Session["kullaniciAdi"] = null;
+				Session.Abandon();
+				return RedirectToAction("Index", "Login");
+			}
 	}
 }

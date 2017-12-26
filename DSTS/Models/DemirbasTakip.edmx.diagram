@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cddfbf5d26804bb9a04de2b03f190688" Name="Diagram1">
+      <Diagram DiagramId="a72cc96962bf4e4e9663a6d36303852f" Name="Diagram1">
         <EntityTypeShape EntityType="DemirbasTakipModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DemirbasTakipModel.tblDemirba" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DemirbasTakipModel.tblDepartman" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
