@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "DemirbasSayisiniArama";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<localDemirbas> ld = ViewBag.data;
 }
 <!-- Main content -->
 <section class="content">
@@ -39,8 +40,8 @@
                             <tr>
                                 <th>Demirbaş Kodu</th>
                                 <th>Demirbaş Adı</th>
-                                <th>Stok Adedi</th>
                                 <th>Demirbaş Türü</th>
+                                <th>Stok Adedi</th>
                                 <th>Demirbaş Fiyatı</th>
                                 <th>Demirbaş Alım Tarihi</th>
                                 <th>Oda Adı</th>
@@ -48,7 +49,7 @@
                             </tr>
                         </thead>
                       <tbody id="demirbas">
-                          
+                     
                         </tbody>
                         <tfoot>
                             <tr>
@@ -89,37 +90,35 @@
                     if ($("#inputArama option:selected").val() == 4)
                         $("#inputDemirbas").append('<option value="' + this.demirbasId + '">' + this.demirbasTarih + '</option>');
                 });
-               
+
             });
-           
+
+        });
+
+
+        $('#inputDemirbas').click(function () {
+            $('td').remove();
+            $.getJSON('/Arama/DemirbaslariGetir', { demirbasId: $("#inputDemirbas option:selected").val() }, function (sonuc) {
+                $('td').remove();
+                for(var i=0; i<sonuc.length; i++)
+                {
+                    $("#demirbas").append(
+                        '<tr>' +
+                        '<td>' + sonuc[i].demirbasKod + '</td>' +
+                        '<td>' + sonuc[i].demirbasAdi + '</td>' +
+                        '<td>' + sonuc[i].tur + '</td>' +
+                        '<td>' + sonuc[i].demirbasAdet + '</td>' +
+                        '<td>' + sonuc[i].demirbasFiyat + '</td>' +
+                        '<td>' + sonuc[i].demirbasTarih + '</td>' +
+                        '<td>' + sonuc[i].odaAdi + '</td>' +
+                        '<td>' + sonuc[i].adet + '</td>' +
+                        '</tr>');
+                }
+            });
         });
     });
 </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#inputDemirbas').change(function () {
-                $('td').remove();
-                $.getJSON('/Arama/DemirbaslariGetir', { demirbasId: $("#inputDemirbas option:selected").val() }, function (sonuc) {
-                    $('td').remove();
-                    $.each(sonuc, function () {
-                        $("#demirbas").append(
-                            '<tr>' +
-                            '<td>' + sonuc.demirbasKod + '</td>' +
-                            '<td>' + sonuc.demirbasAdi + '</td>' +
-                            '<td>' + sonuc.tur + '</td>' +
-                            '<td>' + sonuc.demirbasFiyat + '</td>' +
-                            '<td>' + sonuc.demirbasTarih + '</td>' +
-                            '<td>' + sonuc.demirbasAdet + '</td>' +
-                            '<td>' + sonuc.odaAdi + '</td>' +
-                            '<td>' + sonuc.adet + '</td>' +
-                            '</tr>');
-                        });
-
-                });
-
-            });
-        });
-    </script>
+  
  <script>
   $(function () {
     $('#example1').DataTable({

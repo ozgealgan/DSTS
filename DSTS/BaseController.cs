@@ -10,7 +10,7 @@ namespace DSTS
 	{
 		protected override void OnActionExecuted(ActionExecutedContext filterContext)
 		{
-			/*string controllerName = filterContext.RouteData.Values["controller"].ToString();
+			string controllerName = filterContext.RouteData.Values["controller"].ToString();
 			string actionName = filterContext.RouteData.Values["action"].ToString();
 			bool kontrol = controllerName == "Login" && actionName == "Index";
 
@@ -24,7 +24,7 @@ namespace DSTS
 				
 			}
 			base.OnActionExecuted(filterContext);
-			*/
+			
 		}
 	}
 }

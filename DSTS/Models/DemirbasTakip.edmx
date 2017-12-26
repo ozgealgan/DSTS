@@ -95,7 +95,19 @@
           <Property Name="yetkiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="yekiAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_tblDemirbas_tblTur">
+        <Association Name="FK_tblDemirbasBilgi_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="1" />
+          <End Role="tblDemirbas" Type="Self.tblDemirbas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteId" />
+            </Principal>
+            <Dependent Role="tblDemirbas">
+              <PropertyRef Name="fakulteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDemirbasBilgi_tblTur">
           <End Role="tblTur" Type="Self.tblTur" Multiplicity="1" />
           <End Role="tblDemirbas" Type="Self.tblDemirbas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,7 +156,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblOdaDemirbas_tblDemirbas">
-          <End Role="tblDemirbas" Type="Self.tblDemirbas" Multiplicity="1" />
+          <End Role="tblDemirbas" Type="Self.tblDemirbas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblOdaDemirbas" Type="Self.tblOdaDemirbas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDemirbas">
@@ -190,7 +204,11 @@
           <EntitySet Name="tblPersonel" EntityType="Self.tblPersonel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTur" EntityType="Self.tblTur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblYetki" EntityType="Self.tblYetki" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_tblDemirbas_tblTur" Association="Self.FK_tblDemirbas_tblTur">
+          <AssociationSet Name="FK_tblDemirbasBilgi_tblFakulte" Association="Self.FK_tblDemirbasBilgi_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblDemirbas" EntitySet="tblDemirbas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDemirbasBilgi_tblTur" Association="Self.FK_tblDemirbasBilgi_tblTur">
             <End Role="tblTur" EntitySet="tblTur" />
             <End Role="tblDemirbas" EntitySet="tblDemirbas" />
           </AssociationSet>
@@ -248,7 +266,8 @@
           <Property Name="model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fakulteId" Type="Int32" Nullable="false" />
           <Property Name="demirbasKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblTur" Relationship="Self.FK_tblDemirbas_tblTur" FromRole="tblDemirbas" ToRole="tblTur" />
+          <NavigationProperty Name="tblFakulte" Relationship="Self.FK_tblDemirbasBilgi_tblFakulte" FromRole="tblDemirbas" ToRole="tblFakulte" />
+          <NavigationProperty Name="tblTur" Relationship="Self.FK_tblDemirbasBilgi_tblTur" FromRole="tblDemirbas" ToRole="tblTur" />
           <NavigationProperty Name="tblOdaDemirbas" Relationship="Self.FK_tblOdaDemirbas_tblDemirbas" FromRole="tblDemirbas" ToRole="tblOdaDemirbas" />
         </EntityType>
         <EntityType Name="tblDepartman">
@@ -266,6 +285,7 @@
           </Key>
           <Property Name="fakulteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fakulteAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblDemirbas" Relationship="Self.FK_tblDemirbasBilgi_tblFakulte" FromRole="tblFakulte" ToRole="tblDemirbas" />
           <NavigationProperty Name="tblDepartmen" Relationship="Self.FK_tblDepartman_tblFakulte" FromRole="tblFakulte" ToRole="tblDepartman" />
           <NavigationProperty Name="tblOdas" Relationship="Self.FK_tblOda_tblFakulte" FromRole="tblFakulte" ToRole="tblOda" />
         </EntityType>
@@ -318,7 +338,7 @@
           </Key>
           <Property Name="demirbasTurId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="turAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblDemirbas" Relationship="Self.FK_tblDemirbas_tblTur" FromRole="tblTur" ToRole="tblDemirbas" />
+          <NavigationProperty Name="tblDemirbas" Relationship="Self.FK_tblDemirbasBilgi_tblTur" FromRole="tblTur" ToRole="tblDemirbas" />
         </EntityType>
         <EntityType Name="tblYetki">
           <Key>
@@ -328,7 +348,19 @@
           <Property Name="yekiAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tblPersonels" Relationship="Self.FK_tblPersonel_tblYetki" FromRole="tblYetki" ToRole="tblPersonel" />
         </EntityType>
-        <Association Name="FK_tblDemirbas_tblTur">
+        <Association Name="FK_tblDemirbasBilgi_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="1" />
+          <End Role="tblDemirbas" Type="Self.tblDemirba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteId" />
+            </Principal>
+            <Dependent Role="tblDemirbas">
+              <PropertyRef Name="fakulteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDemirbasBilgi_tblTur">
           <End Role="tblTur" Type="Self.tblTur" Multiplicity="1" />
           <End Role="tblDemirbas" Type="Self.tblDemirba" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +373,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblOdaDemirbas_tblDemirbas">
-          <End Role="tblDemirbas" Type="Self.tblDemirba" Multiplicity="1" />
+          <End Role="tblDemirbas" Type="Self.tblDemirba" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblOdaDemirbas" Type="Self.tblOdaDemirba" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDemirbas">
@@ -423,7 +457,11 @@
           <EntitySet Name="tblPersonels" EntityType="Self.tblPersonel" />
           <EntitySet Name="tblTurs" EntityType="Self.tblTur" />
           <EntitySet Name="tblYetkis" EntityType="Self.tblYetki" />
-          <AssociationSet Name="FK_tblDemirbas_tblTur" Association="Self.FK_tblDemirbas_tblTur">
+          <AssociationSet Name="FK_tblDemirbasBilgi_tblFakulte" Association="Self.FK_tblDemirbasBilgi_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakultes" />
+            <End Role="tblDemirbas" EntitySet="tblDemirbas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDemirbasBilgi_tblTur" Association="Self.FK_tblDemirbasBilgi_tblTur">
             <End Role="tblTur" EntitySet="tblTurs" />
             <End Role="tblDemirbas" EntitySet="tblDemirbas" />
           </AssociationSet>

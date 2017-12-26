@@ -13,7 +13,7 @@ namespace DSTS.localClass
         public int demirbasAdet { get; set; }
         public decimal demirbasFiyat { get; set; }
         public int demirbasTur { get; set; }
-        public DateTime demirbasTarih { get; set; }
+        public string demirbasTarih { get; set; }
         public string demirbasMarka { get; set; }
         public string demirbasModel { get; set; }
         public string demirbasKod { get; set; }
