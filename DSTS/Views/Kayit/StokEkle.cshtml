@@ -1,10 +1,13 @@
 ﻿@using DSTS.localClass
+
 @{
     ViewBag.Title = "StokEkle";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<localFakulte> lf = ViewBag.fakulteler;
     List<localTur> lt = ViewBag.turler;
 }
+
+
 
 
 <section class="content-header">
@@ -29,7 +32,7 @@
             <h3 class="box-title">Stok Ekleme</h3>
         </div>
 
-        <form method="post" action="~/Kayit/StokEkle" class="form-horizontal">
+        <form method="post" action="~/Kayit/StokEkle" onsubmit="return kontrol()" class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputFakulte" class="col-sm-2 control-label">Fakülte</label>
@@ -50,7 +53,7 @@
                     <label for="inputDbAdi" class="col-sm-2 control-label">Demirbaş Adı</label>
 
                     <div class="col-sm-10">
-                        <input name="dbAdi" type="text" class="form-control" id="inputDbAdi" placeholder="Demirbaş Adı">
+                        <input  required="required" maxlength="50" title="En fazla 50 karakter girebilirsiniz." name="dbAdi" type="text" class="form-control" id="inputDbAdi" placeholder="Demirbaş Adı">
                     </div>
                 </div>
 
@@ -58,7 +61,7 @@
                     <label for="inputDbAdet" class="col-sm-2 control-label">Demirbaş Adet</label>
 
                     <div class="col-sm-10">
-                        <input name="DbAdet" type="text" class="form-control" id="inputDbAdet" placeholder="Demirbaş Adet">
+                        <input required="required" pattern="\d*" maxlength="4" title="10000 dan daha küçük bir sayı değeri girmelisiniz.." name="DbAdet" type="text" class="form-control" id="inputDbAdet" placeholder="Demirbaş Adet">
                     </div>
                 </div>
 
@@ -66,7 +69,7 @@
                     <label for="inputDbFiyat" class="col-sm-2 control-label">Demirbaş Fiyatı</label>
 
                     <div class="col-sm-10">
-                        <input name="dbFiyat" type="text" class="form-control" id="inputDbFiyat" placeholder="Demirbaş Fiyatı">
+                        <input required="required" pattern="\d*" maxlength="5" title="100000 dan daha küçük bir sayı değeri girmelisiniz."  name="dbFiyat" type="text" class="form-control" id="inputDbFiyat" placeholder="Demirbaş Fiyatı">
                     </div>
                 </div>
 
@@ -84,32 +87,50 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputMarka" class="col-sm-2 control-label">Demirbaşın Markası</label>
+                    <label for="dbMarka" class="col-sm-2 control-label">Demirbaşın Markası</label>
 
                     <div class="col-sm-10">
-                        <input name="dbMarka" type="text" class="form-control" id="inputMarka" placeholder="Demirbaşın Markası">
+                        <input required="required" maxlength="50" title="En fazla 50 karakter girebilirsiniz." name="dbMarka" type="text" class="form-control" id="dbMarka" placeholder="Demirbaşın Markası">
+
                     </div>
+                    <div id="uyar"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputModel" class="col-sm-2 control-label">Demirbaşın Modeli</label>
 
                     <div class="col-sm-10">
-                        <input name="dbModel" type="text" class="form-control" id="inputModel" placeholder="Demirbaşın Modeli">
+                        <input required="required" maxlength="50" title="En fazla 50 karakter girebilirsiniz." name="dbModel" type="text" class="form-control" id="inputModel" placeholder="Demirbaşın Modeli">
                     </div>
                 </div>
 
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button type="submit" class="btn btn-default">Geri Dön</button>
-                <button type="submit" class="btn btn-info pull-right">Stoğa Ekle</button>
+                <button id="Ekle" type="submit" class="btn btn-info pull-right">Stoğa Ekle</button>
             </div>
             <!-- /.box-footer -->
         </form>
     </div>
 
 </section>
+
+@section scripts {
+    
+        <script type="text/javascript">
+            function kontrol()
+            {
+                if ($("#dbMarka").val() != "") {
+                    return true;
+                }
+                else {
+                    document.getElementById("uyar").innerHTML = "Marka Boş Geçilemez";
+                    return false;
+                }
+            }
+        </script>
+
+    }
 
 
 

@@ -282,7 +282,7 @@ namespace DSTS.BusinessLayer
                     {
                         localDemirbas d = new localDemirbas();
                         d.demirbasId = (int)rd["demirbasId"];
-                        d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
+                        //d.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
                         ld.Add(d);
                     }
                 }
@@ -505,7 +505,7 @@ namespace DSTS.BusinessLayer
                         ld.demirbasAdi = rd["demirbasAdi"].ToString();
                         ld.tur = rd["turAdi"].ToString();
                         ld.demirbasFiyat = Convert.ToDecimal(rd["fiyat"]);
-                        ld.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
+                        //ld.demirbasTarih = Convert.ToDateTime(rd["alimTarihi"]);
                         ld.demirbasAdet = (int)rd["demirbasAdet"];
                         ld.odaAdi = rd["odaAdi"].ToString();
                         ld.adet = (int)rd["adet"];
@@ -536,18 +536,7 @@ namespace DSTS.BusinessLayer
             }
         }
 
-        public void OdadakiDBGuncelle(string odaId, string dbId, string adet)
-        {
-            using (SqlConnection conn = new SqlConnection(conStrig))
-            {
-                conn.Open();
-				cmdd.CommandTimeout = 600;
-				cmdd.CommandType = CommandType.StoredProcedure;
-
-				conn.Dispose();
-				conn.Close();
-			}
-		}
+       
 
 		public void StoktanDbSil(int dbSil)
 		{
@@ -683,7 +672,7 @@ namespace DSTS.BusinessLayer
             }
         }
 
-    }
+    
 		public List<localDemirbas> DbListele()
 		{
 			List<localDemirbas> ld = new List<localDemirbas>();

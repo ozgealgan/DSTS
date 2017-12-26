@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace DSTS.Controllers
 {
     public class KayitController : baseController
@@ -48,6 +49,7 @@ namespace DSTS.Controllers
         
         public ActionResult OdayaDbEkle(string odaAdi, string Demirbas, string dbAdet)
         {
+            
             bl.OdayaDemirbasEkle(odaAdi, Demirbas.Substring(0, 12), Convert.ToInt32(dbAdet));
             return View(OdayaDemirbasEkle());
         }
